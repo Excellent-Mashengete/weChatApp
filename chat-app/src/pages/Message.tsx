@@ -1,20 +1,33 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
 import { callOutline, videocamOutline, sendSharp, add } from 'ionicons/icons';
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import "./Messages.css";
 
-const Messages: React.FC = () => {
+const Messages: React.FC <RouteComponentProps> = (props) => {
+  const [userData, setUserData] = useState<any>(props.history.location.state);
+
+  const ViewContact = () => {
+    
+  } 
+
+  useEffect(()=>{
+   
+  },[])
+
+  console.log(userData.data.name);
+  
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-
+          
           <IonButtons slot="start">
             <IonBackButton defaultHref='/chats'></IonBackButton>
           </IonButtons>
 
-          <IonTitle>
-              <IonItem routerLink="/contactInfo">Back to Back </IonItem>
+          <IonTitle className='w-96'>
+            <IonItem routerLink="/viewcontact">{userData.data.name}</IonItem>
           </IonTitle>
 
           <IonButtons className='videoCall' slot="end">
@@ -85,162 +98,6 @@ const Messages: React.FC = () => {
               Seen at 12:46
           </div>
         </div>
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
 
         <div className="chat chat-start">
           <div className="chat-bubble">You were the Chosen One!</div>
