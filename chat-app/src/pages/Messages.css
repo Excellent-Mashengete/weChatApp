@@ -24,3 +24,18 @@ ion-textarea{
     --padding-end: 0;
 }
   
+ion-fab-button{
+    height: 50px;
+    width: 50px;
+}
+ion-card ion-item ion-avatar{
+    height: 50px;
+    width: 50px;
+}
+.danger{
+    color: red;
+}
+
+.groups{
+    padding-left: 14px;
+}
