@@ -1,3 +1,5 @@
+const {Messages} = require(".");
+
 module.exports = (sequelize, Sequelize) => {
   const Users = sequelize.define("users", {
     name: {
@@ -18,8 +20,10 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
+    },  
   });
-  
+
+  // Users.hasMany(Messages, {foreignKey: 'userId'});
+  Users.hasMany(Messages,{as: 'fotos', foreignKey: 'userId'})
   return Users;
 };

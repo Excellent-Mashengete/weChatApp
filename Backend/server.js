@@ -7,9 +7,18 @@ const server = require('http').createServer(app);
 app.use(cors());
 
 require('./socket')(server)
+
 const db = require('./App/Models');
-db.sequelize.authenticate();
-db.sequelize.sync();
+
+db.sequelize.sync({force: true})
+    .then(() => {
+        console.log("Database is connected");
+    }).catch((err) => {
+        console.log("Failed to connect to DB: ", err);
+    })
+
+
+
 app.get("/", (req, res) =>{
     res.status(200).send("Welcome to Chat app server");
 });
