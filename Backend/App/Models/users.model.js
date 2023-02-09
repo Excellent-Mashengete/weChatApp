@@ -1,4 +1,3 @@
-const {Messages} = require(".");
 
 module.exports = (sequelize, Sequelize) => {
   const Users = sequelize.define("users", {
@@ -23,7 +22,5 @@ module.exports = (sequelize, Sequelize) => {
     },  
   });
 
-  // Users.hasMany(Messages, {foreignKey: 'userId'});
-  Users.hasMany(Messages,{as: 'fotos', foreignKey: 'userId'})
   return Users;
 };

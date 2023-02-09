@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
   
-  Messages.belongTo(Users);
+
   // Messages.belongTo(Conversations);
   
   return Messages;
