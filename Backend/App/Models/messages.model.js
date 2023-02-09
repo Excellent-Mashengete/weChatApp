@@ -1,19 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
     const Messages = sequelize.define("messages", {
-      sender: {
-        type: Sequelize.STRING
+      Sender: {
+        type: Sequelize.INTEGER
       },
-      receiver: {
-        type: Sequelize.STRING
-      },
-      message: {
+      messages: {
         type: Sequelize.TEXT
       },
-      isRead: {
-        type: Sequelize.BOOLEAN,
-        default: false
-      },
-      timestamps: true,
+      
     });
   
     return Messages;

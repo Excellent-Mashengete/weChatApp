@@ -1,12 +1,13 @@
 import { IonAvatar, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 import { RouteComponentProps } from 'react-router-dom';
 import { createOutline } from 'ionicons/icons';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from '../Data';
 import "./Chats.css";
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
-  
+ 
+
   function viewMessages(user:any){    
    props.history.push('/messages', {data: user})
   }

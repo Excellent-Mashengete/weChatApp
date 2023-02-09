@@ -2,14 +2,37 @@ import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader,
 import { callOutline, videocamOutline, sendSharp, add } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import socket from '../service/chats';
 import "./Messages.css";
 
 const Messages: React.FC <RouteComponentProps> = (props) => {
   const [userData, setUserData] = useState<any>(props.history.location.state);
+  const [message, setMessage] = useState('');
+  const [recipient, setRecipient] = useState('');
+  const [messages, setMessages] = useState([]);
+  
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
 
-  const ViewContact = () => {
-    
-  } 
+    socket.on('new message', (message) => {
+      //setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  },[]);
+
+  const handleSubmit = (event:any) => {
+    event.preventDefault();
+    console.log("dfthgjkl")
+    socket.emit('send message', message, recipient);
+    setMessage('');
+    setRecipient('');
+  };
+
 
   useEffect(()=>{
    
@@ -55,63 +78,6 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
               Seen at 12:46
           </div>
         </div>
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
-
-        <div className="chat chat-start">
-          <div className="chat-bubble">You were the Chosen One!</div>
-          <div className="chat-footer opacity-50">
-            Delivered
-          </div>
-          
-          </div>
-            <div className="chat chat-end">         
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">
-              Seen at 12:46
-          </div>
-        </div>
       </IonContent>
 
       <IonFooter className="ion-no-border" translucent={true} collapse="fade">
@@ -127,8 +93,8 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
 
             </IonTextarea>
             <IonButtons>
-              <IonButton type="submit">
-              <IonIcon color="primary" icon={sendSharp} />
+              <IonButton  onClick={handleSubmit}>
+                <IonIcon color="primary" icon={sendSharp} />
               </IonButton>
             </IonButtons>
           </IonItem>
