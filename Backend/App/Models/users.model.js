@@ -13,12 +13,11 @@ module.exports = (sequelize, Sequelize) => {
     avatar: {
       type: Sequelize.TEXT,
     },
-    lastseen:{
-      type: Sequelize.DATE
+    description:{
+      type: Sequelize.TEXT
     },
     password: {
       type: Sequelize.STRING,
-      allowNull: false,
     },  
   });
 

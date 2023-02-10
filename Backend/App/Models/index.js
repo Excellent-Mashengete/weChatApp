@@ -15,6 +15,7 @@ db.GroupMembers = require("./groupMembers.model.js")(sequelize, Sequelize);
 db.Messages = require("./messages.model.js")(sequelize, Sequelize);
 
 
+//Association model
 //Messages
 //Sender
 db.Users.hasMany(db.Messages, {foreignKey: 'user_id'});

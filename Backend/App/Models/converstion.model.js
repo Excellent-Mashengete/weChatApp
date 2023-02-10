@@ -7,16 +7,11 @@ module.exports = (sequelize, Sequelize) => {
     },
     description: {
       type: Sequelize.TEXT,
+    },
+    avatar: {
+      type: Sequelize.TEXT,
     }
   });
-
-  // Conversations.belongsToMany(User, {through: GroupMembers});
-  // Conversations.hasMany(Messages, {
-  //   foreignKey: {
-  //     name: "groupId",
-  //     allowNull: false
-  //   }
-  // })
 
   return Conversations;
 }

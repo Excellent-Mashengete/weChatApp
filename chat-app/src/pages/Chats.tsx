@@ -4,9 +4,15 @@ import { createOutline } from 'ionicons/icons';
 import React, { useState, useEffect } from "react";
 import data from '../Data';
 import "./Chats.css";
+import Users from '../service/users';
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
- 
+  const [chats, setChats] = useState([]);
+  useEffect(() =>{
+    Users.getUser().then(res => {
+      setChats(res.data.users);
+    })
+  },[])
 
   function viewMessages(user:any){    
    props.history.push('/messages', {data: user})
@@ -36,23 +42,23 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
         </IonHeader> 
 
         <IonList>
-          {data.map((item, index) => { 
+           {chats.map((item:any) => { 
             return (
-              <IonItem className='height' key={index} onClick={() => {viewMessages(item)}}>
-                <IonAvatar className='img' slot='start'>
-                  <img src={item.image} alt="Silhouette of a person's head" />
+              <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
+                 <IonAvatar className='img' slot='start'>
+                  <img src={item.avatar} alt="Silhouette of a person's head" />
                 </IonAvatar>
-                
+     
                 <IonLabel>
                   <IonLabel> {item.name} </IonLabel>
                   
-                  <p> {item.description} </p>
+                  <p> {"item.description"} </p>
                 </IonLabel>
 
-                <p> {item.date} </p>
+                <p> {"item.date"} </p>
               </IonItem>
             )
-          })}
+          })} 
         </IonList>
       </IonContent>
     </IonPage>

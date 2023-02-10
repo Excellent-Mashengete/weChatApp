@@ -19,7 +19,7 @@ require('./socket')(server)
 
 const db = require('./App/Models');
 
-db.sequelize.authenticate({force: false})
+db.sequelize.authenticate({force: false })
     .then(() => {
         console.log("Database is connected");
     }).catch((err) => {

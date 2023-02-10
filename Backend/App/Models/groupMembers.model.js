@@ -8,8 +8,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  // GroupMembers.belongsTo(Users);
-  // GroupMembers.belongsTo(Conversations);
-
   return GroupMembers;
 }

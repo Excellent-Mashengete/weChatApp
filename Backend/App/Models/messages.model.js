@@ -1,4 +1,4 @@
-const Users  = require("./users.model");
+
 
 module.exports = (sequelize, Sequelize) => {
   const Messages = sequelize.define("Messages", {
@@ -6,9 +6,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.TEXT
     },
   });
-  
-
-  // Messages.belongTo(Conversations);
   
   return Messages;
 };
