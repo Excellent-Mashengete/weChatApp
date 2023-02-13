@@ -89,7 +89,7 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
               </IonButton>
             </IonButtons>
             
-            <IonTextarea className='flex ' autoGrow={true} placeholder="Type message"  >
+            <IonTextarea className='flex' autoGrow={true} placeholder="Type message"  >
 
             </IonTextarea>
             <IonButtons>

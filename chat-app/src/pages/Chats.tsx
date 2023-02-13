@@ -25,7 +25,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
           <IonTitle>Chats</IonTitle>
           <IonButtons className='text-2xl' slot='end'>
             <IonButton className='text-2xl' slot='end'>
-              <IonIcon  icon={createOutline} />
+              <IonIcon icon={createOutline} />
             </IonButton>
           </IonButtons>
         </IonToolbar>

@@ -1,8 +1,8 @@
 import { IonAvatar, IonBackButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { add } from 'ionicons/icons';
-import "./Messages.css"
-const Viewcontact: React.FC = () => {
+import "./Messages.css";
 
+const Viewcontact: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>

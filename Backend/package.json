@@ -26,6 +26,7 @@
     "pg-hstore": "^2.3.4",
     "rand-token": "^1.0.1",
     "sequelize": "^6.28.0",
-    "socket.io": "^4.6.0"
+    "socket.io": "^4.6.0",
+    "twilio": "^4.7.2"
   }
 }
