@@ -4,10 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-
 const SignUp: React.FC= () => {
-    const [isValid, setIsValid] = useState<boolean>(false);
-  
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Full Name is mendatory'),
@@ -24,10 +21,11 @@ const SignUp: React.FC= () => {
         event.preventDefault();  
   
         let userData = {
-            username: data.username,
+            name: data.username,
             avatar: "https://ionicframework.com/docs/img/demos/avatar.svg",
             cellphone: data.phone,
             password: data.password,
+
         }  
 
         console.log(userData);

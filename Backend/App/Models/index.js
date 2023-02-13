@@ -10,10 +10,9 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Users = require("./users.model.js")(sequelize, Sequelize);
-db.Conversations = require("./converstion.model.js")(sequelize, Sequelize);
-db.GroupMembers = require("./groupMembers.model.js")(sequelize, Sequelize);
+db.Conversations = require("./converstions.model")(sequelize, Sequelize);
+db.GroupMembers = require("./group.model")(sequelize, Sequelize);
 db.Messages = require("./messages.model.js")(sequelize, Sequelize);
-
 
 //Association model
 //Messages
@@ -24,6 +23,8 @@ db.Messages.belongsTo(db.Users, {foreignKey: 'user_id'});
 //Receiver
 db.Users.hasMany(db.Messages, {foreignKey: 'recipient_id', as: 'receipient'});
 db.Messages.belongsTo(db.Users, {foreignKey: 'recipient_id', as: 'receipient'});
+
+//
 
 
 //GroupMembers
