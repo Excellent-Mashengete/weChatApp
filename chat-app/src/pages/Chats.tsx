@@ -1,13 +1,15 @@
-import { IonAvatar, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAvatar, IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 import { RouteComponentProps } from 'react-router-dom';
-import { createOutline } from 'ionicons/icons';
-import React, { useState, useEffect } from "react";
-import data from '../Data';
-import "./Chats.css";
+import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
+import { isPlatform } from '@ionic/react';
+import { useState, useEffect } from "react";
+import Skeleton from 'react-loading-skeleton';
 import Users from '../service/users';
+import "./Chats.css";
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
   const [chats, setChats] = useState([]);
+
   useEffect(() =>{
     Users.getUser().then(res => {
       setChats(res.data.users);
@@ -24,9 +26,13 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
         <IonToolbar>
           <IonTitle>Chats</IonTitle>
           <IonButtons className='text-2xl' slot='end'>
-            <IonButton className='text-2xl' slot='end'>
-              <IonIcon icon={createOutline} />
-            </IonButton>
+            {isPlatform('ios') ? ( 
+                <IonButton className='text-3xl' slot='end'>
+                  <IonIcon icon={createOutline} />
+                 
+                </IonButton> )
+              :null
+            }
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -46,12 +52,12 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
             return (
               <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
                  <IonAvatar className='img' slot='start'>
-                  <img src={item.avatar} alt="Silhouette of a person's head" />
+                  <img src={item.avatar || <Skeleton />} alt="Silhouette of a person's head" />
                 </IonAvatar>
      
                 <IonLabel>
-                  <IonLabel> {item.name} </IonLabel>
-                  
+                  <IonLabel> {item.name || <Skeleton  count={10} />} </IonLabel>
+
                   <p> {"item.description"} </p>
                 </IonLabel>
 
@@ -60,6 +66,15 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
             )
           })} 
         </IonList>
+        {isPlatform('android') ? (
+            <IonFab slot="fixed" vertical="bottom" horizontal="end">
+              <IonFabButton routerLink='/contacts' color="secondary">
+                <IonIcon  icon={chatbubbleEllipses}></IonIcon>
+              </IonFabButton>
+            </IonFab>
+          ) 
+          : null
+        }
       </IonContent>
     </IonPage>
   );

@@ -1,10 +1,11 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonNote, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { RouteComponentProps } from 'react-router-dom';
+import Auth from '../../service/auth';
 import * as Yup from 'yup';
 
-const SignUp: React.FC= () => {
+const SignUp: React.FC<RouteComponentProps> = (props) => {
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     const formSchema = Yup.object().shape({
         username: Yup.string().required('Full Name is mendatory'),
@@ -17,20 +18,19 @@ const SignUp: React.FC= () => {
     const { register, handleSubmit, reset, formState } = useForm(formOptions)
     const { errors } = formState;
 
-    function onSubmit(data:any, event: any) {
+    async function onSubmit(data:any, event: any) {
         event.preventDefault();  
   
         let userData = {
             name: data.username,
-            avatar: "https://ionicframework.com/docs/img/demos/avatar.svg",
+            avatar: 'https://ionicframework.com/docs/img/demos/avatar.svg',
             cellphone: data.phone,
             password: data.password,
-
         }  
 
-        console.log(userData);
-        
-        reset();
+        await Auth.register(userData).then((response) => {
+            console.log(response)
+        })
         return false;
     }
    
@@ -54,6 +54,7 @@ const SignUp: React.FC= () => {
                                 <IonInput type="text" {...register('username')} name="username" />
                                 <IonNote  color="danger" >{errors.username?.message?.toString()}</IonNote>
                             </IonItem>
+
                             <IonItem counter={true} fill="solid" >
                                 <IonLabel position="floating">Phone Number</IonLabel>
                                 <IonInput type="number" maxlength={10} max={10}  {...register('phone')} name="phone"  onKeyDown={ (evt) => evt.key === 'e' && evt.preventDefault() } onKeyPress={(e) => {if (e.code === 'Minus' || e.code === 'Plus' )e.preventDefault() }} />
@@ -62,7 +63,7 @@ const SignUp: React.FC= () => {
 
                             <IonItem counter={true} fill="solid" >
                                 <IonLabel position="floating">Password</IonLabel>
-                                <IonInput type="password"  maxlength={10} max={10} {...register('password')} name="password" />
+                                <IonInput type="password"  maxlength={6} max={6} {...register('password')} name="password" />
                                 <IonNote color="danger" >{errors.password?.message?.toString()}</IonNote>
                             </IonItem>
                 

@@ -27,16 +27,17 @@ db.sequelize.authenticate({force: false })
     })
 
 
-
 app.get("/", (req, res) =>{
     res.status(200).send("Welcome to Chat app server");
 });
 
 const user = require("./App/Routes/getAllUsers.routes");
 const getid = require("./App/Routes/getOneUser.routes");
+const auth = require("./App/Routes/authenticate");
 
 app.use("/api", user);
 app.use("/api", getid);
+app.use("/api", auth);
 
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}. http://localhost:${port}`) 

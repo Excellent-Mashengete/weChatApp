@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonPage, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
 import { callOutline, videocamOutline, sendSharp, add } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
@@ -43,8 +43,7 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          
+        <IonToolbar> 
           <IonButtons slot="start">
             <IonBackButton defaultHref='/chats'></IonBackButton>
           </IonButtons>
