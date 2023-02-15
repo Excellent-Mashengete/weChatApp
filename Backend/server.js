@@ -32,12 +32,10 @@ app.get("/", (req, res) =>{
 });
 
 const user = require("./App/Routes/getallusers.routes");
-const getid = require("./App/Routes/getoneuser.routes");
 const auth = require("./App/Routes/authenticate");
 const message = require("./App/Routes/getmessages");
 
 app.use("/api", user);
-app.use("/api", getid);
 app.use("/api", auth);
 app.use("/api", message);
 

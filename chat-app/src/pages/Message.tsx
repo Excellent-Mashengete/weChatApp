@@ -1,5 +1,5 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonPage, IonTextarea, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
-import { callOutline, videocamOutline, sendSharp, add, camera, cameraOutline, sendOutline } from 'ionicons/icons';
+import { callOutline, videocamOutline, add, cameraOutline, sendOutline } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { decodedToken } from '../helpers/helpers';
@@ -79,7 +79,7 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
                       <div className="chat chat-start" >
                         <div className="chat-image avatar">
                           <div className="w-10 rounded-full">
-                            <img src={userData.data.avatar} onClick={Viewcontact}  />
+                            <img src={userData.data.avatar} onClick={Viewcontact} alt="Silhouette of a person's head" />
                           </div>
                         </div>
                         <div className="chat-bubble chat-bubble-primary">{item.messages}</div>
@@ -88,7 +88,7 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
                       <div className="chat chat-end mb-5 mt-5 ">
                         <div className="chat-image avatar">
                           <div className="w-10 rounded-full">
-                            <img src={decodedToken().avatar}  />
+                            <img src={decodedToken().avatar} alt="Silhouette of a person's head" />
                           </div>
                         </div>
                         <div className="chat-bubble chat-bubble-accent" >{item.messages}</div>
