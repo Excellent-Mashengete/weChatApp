@@ -1,8 +1,13 @@
 import { IonAvatar, IonBackButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { add } from 'ionicons/icons';
+import { useState } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import "./Messages.css";
 
-const Viewcontact: React.FC = () => {
+const Viewcontact: React.FC <RouteComponentProps> = (props) => {
+  const [userData] = useState<any>(props.history.location.state);
+  console.log(userData);
+  
   return (
     <IonPage>
       <IonHeader>

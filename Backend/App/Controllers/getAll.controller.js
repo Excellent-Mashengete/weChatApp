@@ -13,47 +13,27 @@ module.exports.getUser = async (req, res) => {
     }
 }   
 
-module.exports.getUserWithMessage = async (req, res) => {
-    const {id} = req.params
+module.exports.getAllChatusers = async (req, res) => {
+    const { sender_id } = req.params;
     try {
-        const oneUser = await user.findOne({ 
-            where: { 
-                id: id
-            }, 
-            include: [{
-                model:messages,
-                where: {
-                    recipient_id:{ include:[user]}
+        const contacts = await messages.findAll({
+            where: {
+              recipient_id: sender_id
+            },
+            attributes: [
+                'messages', 'createdAt',
+            ],
+            include: [
+                {
+                  model: user,
+                  attributes: ['name']
                 }
-                // include:[{
-                //     model: user,
-                    
-                // }]
-            }]
-            
+            ]
         });
-        if (oneUser  === null || oneUser === undefined) {
-            return res.status(400).json({ error: "User not found" });
-        }
-
-        res.status(200).json({ oneUser: oneUser });
+        
+        res.status(200).json({ users: contacts });
+        
     } catch (error) {
         res.status(400).json({ error: "DB error" });
     }
-}  
-
-
-/*
-include: [{
-                model: groupMembers, 
-                include:[group]
-            }, 
-            {
-                model: messages,
-                include:[{
-                    model: users,
-                    where: {}
-                }]
-            }]
-
-            */
+}

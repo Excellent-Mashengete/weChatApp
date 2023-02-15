@@ -7,6 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import Users from '../service/users';
 import "./Chats.css";
 
+
 const Chats: React.FC<RouteComponentProps> = (props)=> {
   const [chats, setChats] = useState([]);
 
@@ -17,7 +18,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
   },[])
 
   function viewMessages(user:any){    
-   props.history.push('/messages', {data: user})
+    props.history.push('/messages', {data: user})
   }
 
   return (

@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const allUsers = require('../Controllers/getAll.controller');
+const allUsers = require('../Controllers/getall.controller');
 
 router.get("/users", allUsers.getUser);
-router.get("/usersChats/:id", allUsers.getUserWithMessage);
+router.get("/users/:sender_id", allUsers.getAllChatusers)
 
 module.exports = router;

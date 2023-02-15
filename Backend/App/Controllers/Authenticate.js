@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../Models");
 const users = db.Users;
-const SECRET_KEY = "iaujshfklausfokjvuorjvksuirefkjauirjkauerfvkajbsru;foajckrabuv";
+const SECRET_KEY = "uihou";
 
 module.exports.register = async (req, res) => {
     const {name, avatar, cellphone, password } = req.body
@@ -30,10 +30,12 @@ module.exports.register = async (req, res) => {
 
 module.exports.login = async (req, res) => {
     const {cellphone, password } = req.body
-    // try {
-        const user = await users.findOne({ cellphone: cellphone });
+    console.log(cellphone, password);
 
-        if (user.length == 0) {
+    try {
+        const user = await users.findOne({where:{ cellphone: cellphone }});
+       
+        if (!user) {
             return res.status(400).json({ error: "user does not exists" })
         }else{
             bcrypt.compare(password, user.password, (err, result) => {
@@ -59,7 +61,7 @@ module.exports.login = async (req, res) => {
             });
         }
 
-    // }catch(e) {
-    //     res.status(500).json({error: "Database error while trying to login a user!" });
-    // }
+    }catch(e) {
+        res.status(500).json({error: "Database error while trying to login a user!" });
+    }
 }

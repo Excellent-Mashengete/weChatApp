@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from "yup";
 import Auth from '../../service/auth';
+import { setToken } from '../../helpers/helpers';
 
 const SignIn: React.FC<RouteComponentProps> = (props) => {
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -22,8 +23,11 @@ const SignIn: React.FC<RouteComponentProps> = (props) => {
             cellphone: data.phone,
             password: data.password,
         } 
+        console.log(userData);
+        
         Auth.login(userData).then((result) => {
-            localStorage.setItem('token', result.data.token);  
+            
+            setToken(result.data.token);  
             props.history.push('/chats');
             reset();
         }).catch((error) => {
@@ -51,7 +55,7 @@ const SignIn: React.FC<RouteComponentProps> = (props) => {
     
                             <IonItem counter={true} fill="solid" >
                                 <IonLabel position="floating">Phone Number</IonLabel>
-                                <IonInput type="number" maxlength={10} max={10}  {...register('phone')} name="phone"  
+                                <IonInput type="number" maxlength={10} max={10} {...register('phone')} name="phone"  
                                     onKeyDown={ (evt) => evt.key === 'e' && evt.preventDefault() }
                                     onKeyPress={(e) => {if (e.code === 'Minus' || e.code === 'Plus' )e.preventDefault() }} />
                                 <IonNote color="danger" >{errors.phone?.message?.toString()}</IonNote>

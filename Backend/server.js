@@ -31,13 +31,15 @@ app.get("/", (req, res) =>{
     res.status(200).send("Welcome to Chat app server");
 });
 
-const user = require("./App/Routes/getAllUsers.routes");
-const getid = require("./App/Routes/getOneUser.routes");
+const user = require("./App/Routes/getallusers.routes");
+const getid = require("./App/Routes/getoneuser.routes");
 const auth = require("./App/Routes/authenticate");
+const message = require("./App/Routes/getmessages");
 
 app.use("/api", user);
 app.use("/api", getid);
 app.use("/api", auth);
+app.use("/api", message);
 
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}. http://localhost:${port}`) 

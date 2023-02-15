@@ -10,20 +10,21 @@
     margin-right: 10px;
     font-size: x-large;
 }
-.ios ion-textarea{
+
+ion-textarea.custom-textarea {
     --padding-bottom: 0;
-    --padding-top: 24px;
     --padding-start: 0;
-    --padding-end: 0;
+    --border-radius: 5%;
 }
-  
-ion-textarea{
-    --padding-bottom: 0;
-    --padding-top: 17px;
-    --padding-start: 0;
-    --padding-end: 0;
+
+ion-footer ioni-tem{
+   display: flex;
 }
-  
+
+ion-footer ion-icon{
+    font-size: xx-large;
+}
+
 ion-fab-button{
     height: 50px;
     width: 50px;
@@ -39,3 +40,4 @@ ion-card ion-item ion-avatar{
 .groups{
     padding-left: 14px;
 }
+
