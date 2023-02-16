@@ -18,6 +18,7 @@ module.exports.getAllChatusers = async (req, res) => {
     const { sender_id } = req.params;
     console.log(sender_id);
     try {
+        //update the message and date fields
         const contacts = await messages.findAll({
             where: {
               recipient_id: sender_id
