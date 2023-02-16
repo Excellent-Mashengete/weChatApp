@@ -40,20 +40,30 @@ module.exports.getAllChatusers = async (req, res) => {
         //     limit:1 
         // });
 
-        const groups = await conversations.findAll({
-            where: {
-              '$chat_messages.user_id$': sender_id
-            },
+        const groups = await groupmembers.findAll({
             include: [
                 {
-                    model: groupmembers
-                },
-                {
-                    model: messages
-                },
+                model:conversations
+                }
             ]
+        
         });
 
     res.status(200).json({ users: groups });
 
+}
+
+module.exports.allMessages = async (req, res) => {
+    
+    const contacts = await messages.findAll({
+        where: {
+            group_id: req.params.id
+        },
+        include:[
+            {
+                model: user,
+            }
+        ]
+    })
+    res.status(200).json({ users: contacts });
 }

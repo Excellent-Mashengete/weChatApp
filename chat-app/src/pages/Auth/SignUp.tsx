@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { RouteComponentProps } from 'react-router-dom';
 import Auth from '../../service/auth';
 import * as Yup from 'yup';
+import { setToken } from '../../helpers/helpers';
 
 const SignUp: React.FC<RouteComponentProps> = (props) => {
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -26,11 +27,26 @@ const SignUp: React.FC<RouteComponentProps> = (props) => {
             avatar: 'https://ionicframework.com/docs/img/demos/avatar.svg',
             cellphone: data.phone,
             password: data.password,
+        }
+
+        let logData ={
+            cellphone: data.phone,
+            password: data.password,
         }  
 
         await Auth.register(userData).then((response) => {
             console.log(response)
         })
+        
+        //Login user if successfuly signed up
+        await Auth.login(logData).then((response) => {
+            setToken(response.data.token);  
+            props.history.push('/chats');
+            reset();
+        }).catch((error) => {
+            console.log(error);    
+        })
+        
         return false;
     }
    
