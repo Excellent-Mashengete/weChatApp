@@ -1,11 +1,11 @@
 import { API } from "../environment/environment";
 import axios from 'axios';
 
-const getUser = () => {
-    return axios.get(`${API}/api/users`);
+const getUser = (id:any) => {
+    return axios.get(`${API}/api/users/${id}`);
 }
  
-const functions ={
+const functions = {
     getUser
 }
 

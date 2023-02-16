@@ -2,24 +2,34 @@ import { IonAvatar, IonButton, IonButtons, IonContent, IonFab, IonFabButton, Ion
 import { RouteComponentProps } from 'react-router-dom';
 import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
 import { isPlatform } from '@ionic/react';
+import { decodedToken, transform } from '../helpers/helpers';
 import { useState, useEffect } from "react";
 import Skeleton from 'react-loading-skeleton';
 import Users from '../service/users';
 import "./Chats.css";
 
-
 const Chats: React.FC<RouteComponentProps> = (props)=> {
   const [chats, setChats] = useState([]);
-
-  useEffect(() =>{
-    Users.getUser().then(res => {
-      setChats(res.data.users);
+  
+  function AllUsersAndGroups(){
+    Users.getUser(decodedToken().id).then(res => {
+      console.log(res.data.allContact);
+      
+      setChats(res.data.allContact);
     })
+  }
+  useEffect(() =>{
+    AllUsersAndGroups();
   },[])
 
   function viewMessages(user:any){    
     props.history.push('/messages', {data: user})
   }
+
+  console.log(chats);
+
+ 
+  
 
   return (
     <IonPage>
@@ -30,7 +40,6 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
             {isPlatform('ios') ? ( 
                 <IonButton className='text-3xl' slot='end'>
                   <IonIcon icon={createOutline} />
-                 
                 </IonButton> )
               :null
             }
@@ -49,7 +58,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
         </IonHeader> 
 
         <IonList>
-           {chats.map((item:any) => { 
+          {chats.map((item:any) => { 
             return (
               <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
                  <IonAvatar className='img' slot='start'>
@@ -58,11 +67,15 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
      
                 <IonLabel>
                   <IonLabel> {item.name || <Skeleton  count={10} />} </IonLabel>
-
-                  <p> {"item.description"} </p>
+                  {item.group_id >= 0 ? (
+                      <p> {item.cellphone } {item.lastMessage} </p>
+                    ):(
+                      <p>{item.lastMessage} </p>
+                    )
+                  }
                 </IonLabel>
 
-                <p> {"item.date"} </p>
+                <p> {transform (item.datesend)} </p>
               </IonItem>
             )
           })} 

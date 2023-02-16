@@ -3,3 +3,4 @@ import { API } from '../environment/environment';
 const socket = io(API);
 
 export default socket;
+

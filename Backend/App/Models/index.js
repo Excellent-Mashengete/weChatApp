@@ -24,8 +24,6 @@ db.Messages.belongsTo(db.Users, {foreignKey: 'user_id'});
 db.Users.hasMany(db.Messages, {foreignKey: 'recipient_id', as: 'receipient'});
 db.Messages.belongsTo(db.Users, {foreignKey: 'recipient_id', as: 'receipient'});
 
-//
-
 
 //GroupMembers
 db.Users.hasMany(db.GroupMembers, {foreignKey: 'user_id'});

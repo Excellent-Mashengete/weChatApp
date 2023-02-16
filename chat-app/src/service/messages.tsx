@@ -6,6 +6,8 @@ const getMessages = (data:any) => {
 }
 
 const sendTextMessages = (data:any) => {    
+    console.log(data);
+    
     return axios.post(`${API}/api/sendmessags`, data);
 }
 

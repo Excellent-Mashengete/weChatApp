@@ -10,7 +10,7 @@ const Contacts: React.FC <RouteComponentProps> = (props)=> {
     const [chats, setChats] = useState([]);
 
     useEffect(() =>{
-        Users.getUser().then(res => {
+        Users.getUser(1).then(res => {
             setChats(res.data.users);
         })
     },[])
