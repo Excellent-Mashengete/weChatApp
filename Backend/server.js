@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 8080; //create a listerning port number
 const server = require('http').createServer(app);
 
-app.use(cors());
+app.use(cors({origin:"*"}));
 app.use(express.json());  // to support JSON-encoded+
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
