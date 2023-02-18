@@ -11,7 +11,6 @@ const login = (data:Login) => {
     return axios.post(`${API}/api/login`, data);
 }
  
- 
 const functions ={
     register,
     login

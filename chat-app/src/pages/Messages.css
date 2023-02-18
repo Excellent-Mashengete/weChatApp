@@ -41,3 +41,6 @@ ion-card ion-item ion-avatar{
     padding-left: 14px;
 }
 
+.chat-bubble-light{
+    background-color: rgb(138, 138, 138);
+}

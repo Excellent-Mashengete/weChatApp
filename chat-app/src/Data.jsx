@@ -3,53 +3,55 @@ const data = [
         "id":1,
         "name": "Excellent",
         "date":"2022/11/27",
-        "image":"https://avatarfiles.alphacoders.com/226/226604.png",
+        "lastMessage": "Hello Excellent",
+        "avatar":"https://avatarfiles.alphacoders.com/226/226604.png",
+        "datesend": "2023-02-17T14:24:21.685Z",
         "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
     {
+        
         "id":2,
-        "name": "Kgoposto",
+        "name": "Koketso",
         "date":"2022/10/27",
-        "image":"https://avatarfiles.alphacoders.com/975/97500.jpg",
+        "lastMessage": "How are you",
+        "avatar":"https://avatarfiles.alphacoders.com/975/97500.jpg",
+        "datesend": "2023-02-17T23:24:21.685Z",
         "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
     {
         "id":3,
         "name": "Shaggy",
         "date":"2022-01-17 04:33:12+00",
-        "image":"https://ionicframework.com/docs/img/demos/avatar.svg",
+        "lastMessage": "Will help each other monday",
+        "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg",
+        "datesend": "2023-02-16T14:24:21.685Z",
         "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
-    {
+       {
         "id":4,
-        "name": "Brandon",
+        "name": "full-stack-developer",
         "date":"Yesterday",
+        "group_id":1,
         "cellphone":"0632428878",
-        "image":"https://avatarfiles.alphacoders.com/103/103808.jpg",
+        "username": "Brandon",
+        "lastMessage": "how is coding",
+        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
+        "datesend": "2023-01-16T14:24:21.685Z",
         "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
     {
         "id":5,
-        "name": "Virgy",
+        "name": "Brandon",
         "date":"Yesterday",
-        "image":"https://ionicframework.com/docs/img/demos/avatar.svg",
+        "cellphone":"0632428878",
+        "lastMessage": "I need help with the chatting app",
+        "avatar":"https://avatarfiles.alphacoders.com/103/103808.jpg",
+        "datesend": "2022-06-16T14:24:21.685Z",
         "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
-    {
-        "id":6,
-        "name": "Koketso",
-        "date":"22:30",
-        "image":"https://avatarfiles.alphacoders.com/894/89446.jpg",
-        "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-
-    {
-        "id":7,
-        "name": "Ipeleng",
-        "date":"16:30",
-        "image":"https://ionicframework.com/docs/img/demos/avatar.svg",
-        "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    }
+ 
+  
 ]
 
 export default data;
+

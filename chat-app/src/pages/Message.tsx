@@ -8,53 +8,21 @@ import "./Messages.css";
 
 const Messages: React.FC <RouteComponentProps> = (props) => {
   const [userData] = useState<any>(props.history.location.state);
-  const [message, setMessage] = useState([]);
   const [message_Text, setMessageText] = useState();
-  const [recipient, setRecipient] = useState('');
-  const [messages, setMessages] = useState([]);
   const history = useHistory();
 
-  function RetrieveMessages(){
-    const data = {
-      sender_id: decodedToken().id,
-      recipient_id: userData.data.id
-    }
+  console.log(userData);
 
-    SingleUser.getMessages(data).then(res => {
-      setMessage(res.data.userMessages);
-    })
+  function Viewcontact() {
+    props.history.push("/viewcontact");
   }
-
-  useEffect(() =>{
-    RetrieveMessages();
-  },[])
-
-  const Viewcontact = () => {
-    history.push('/viewcontact', userData);
-  }
-  
-  function sendTextMessages(event:any){
-    event.preventDefault();
-    const data = {
-      sender_id: decodedToken().id,
-      recipient_id: userData.data.id,
-      message_text: message_Text
-    }
-
-    SingleUser.sendTextMessages(data).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      RetrieveMessages();
-    })
-  }
-  
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar> 
           <IonButtons slot="start">
-            <IonBackButton defaultHref='/chats'></IonBackButton>
+            <IonBackButton defaultHref='/app/chats'></IonBackButton>
           </IonButtons>
 
           <IonTitle  className='w-96'>{userData.data.name}</IonTitle>
@@ -69,42 +37,33 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
 
         </IonToolbar>
       </IonHeader>
-      {message.length !== 0 ?
-          <IonContent className='ml-4' fullscreen > 
-            {message.map((item:any) => {
-              return (
-                <div key={item.id}  >
-                  {item.user_id !== decodedToken().id ?
-                    (
-                      <div className="chat chat-start" >
-                        <div className="chat-image avatar">
-                          <div className="w-10 rounded-full">
-                            <img src={userData.data.avatar} onClick={Viewcontact} alt="Silhouette of a person's head" />
-                          </div>
-                        </div>
-                        <div className="chat-bubble chat-bubble-primary">{item.messages}</div>
-                      </div>
-                    ):(
-                      <div className="chat chat-end mb-5 mt-5 ">
-                        <div className="chat-image avatar">
-                          <div className="w-10 rounded-full">
-                            <img src={decodedToken().avatar} alt="Silhouette of a person's head" />
-                          </div>
-                        </div>
-                        <div className="chat-bubble chat-bubble-accent" >{item.messages}</div>
-                      </div>
-                    )
-                  }
-                </div>
-              )
-            })}
-          </IonContent>
-        :
-        <IonContent fullscreen>
 
-        </IonContent>
-      }
-
+      <IonContent className='ml-4' fullscreen > 
+        <div className='mt-5'>
+          <div className="chat chat-start" >
+            <div className="chat-image avatar">
+              <div className="w-10 rounded-full">
+                <img src={userData.data.avatar} onClick={Viewcontact} alt="Silhouette of a person's head" />
+              </div>
+            </div>
+            
+            <div className="chat-bubble chat-bubble-light">fjrfpe</div>
+          </div>
+                  
+          <div className="chat chat-end mb-5 mt-5 ">
+            <div className="chat-image avatar">
+              <div className="w-10 rounded-full">
+                <img src={decodedToken().avatar} alt="Silhouette of a person's head" />
+              </div>
+            </div>
+          <div className="chat-bubble chat-bubble-primary" >
+            DJKWR
+            <div className="chat-footer opacity-50">12:46 </div>
+          </div>
+          
+        </div>        
+        </div>
+      </IonContent>
 
       <IonFooter >
       {isPlatform('ios') ? 
@@ -128,7 +87,7 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
               </IonButtons>
 
               <IonButtons className='ml-4 '>
-                <IonButton type='submit' onClick={sendTextMessages} >
+                <IonButton type='submit' >
                   <IonIcon  color="primary" icon={sendOutline} />
                 </IonButton>
               </IonButtons>

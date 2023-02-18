@@ -17,7 +17,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Routes from './Routers';
+import MainRoutes from './MainRoutes';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
 setupIonicReact();
@@ -25,7 +25,7 @@ setupIonicReact();
 const App: React.FC = () => (
   <SkeletonTheme baseColor="#202020" highlightColor="#444">
     <IonApp>
-      <Routes />
+      <MainRoutes />
     </IonApp>
   </SkeletonTheme>
   

@@ -2,9 +2,9 @@ import { IonAvatar, IonBackButton, IonButtons, IonContent, IonHeader,  IonItem, 
 import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import Skeleton from 'react-loading-skeleton';
-import Users from '../service/users';
+import Users from '../../service/users';
 import "./Chats.css";
-import data from '../Data';
+import data from '../../Data';
 
 const Contacts: React.FC <RouteComponentProps> = (props)=> {
     const [chats, setChats] = useState([]);

@@ -6,7 +6,6 @@ import "./Messages.css";
 
 const Viewcontact: React.FC <RouteComponentProps> = (props) => {
   const [userData] = useState<any>(props.history.location.state);
-  console.log(userData);
   
   return (
     <IonPage>

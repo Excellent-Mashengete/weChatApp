@@ -1,11 +1,12 @@
-import { IonAvatar, IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAvatar, IonBadge, IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 import { RouteComponentProps } from 'react-router-dom';
 import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
 import { isPlatform } from '@ionic/react';
-import { decodedToken, transform } from '../helpers/helpers';
+import { decodedToken, transform } from '../../helpers/helpers';
 import { useState, useEffect } from "react";
 import Skeleton from 'react-loading-skeleton';
-import Users from '../service/users';
+import Users from '../../service/users';
+import Data from '../../Data';
 import "./Chats.css";
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
@@ -58,7 +59,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
         </IonHeader> 
 
         <IonList>
-          {chats.map((item:any) => { 
+          {Data.map((item:any) => { 
             return (
               <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
                  <IonAvatar className='img' slot='start'>
@@ -68,17 +69,21 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
                 <IonLabel>
                   <IonLabel> {item.name || <Skeleton  count={10} />} </IonLabel>
                   {item.group_id >= 0 ? (
-                      <p> {item.cellphone } {item.lastMessage} </p>
+                      <p> {item.cellphone || item.username } {item.lastMessage} </p>
                     ):(
                       <p>{item.lastMessage} </p>
                     )
                   }
                 </IonLabel>
 
-                <p> {transform (item.datesend)} </p>
+                <div>
+                  <p>{transform (item.datesend)}</p>
+                  <IonBadge  slot="end">11</IonBadge>   
+                </div>
               </IonItem>
             )
           })} 
+          
         </IonList>
         {isPlatform('android') ? (
             <IonFab slot="fixed" vertical="bottom" horizontal="end">
