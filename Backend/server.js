@@ -1,19 +1,14 @@
 const express = require('express'); // import express library
 const app = express(); //Initialize express
 const cors = require('cors'); //import cors module
-const bodyParser = require('body-parser');
+const bodyparser = require("body-parser");
 const port = process.env.PORT || 8080; //create a listerning port number
 const server = require('http').createServer(app);
 
 app.use(cors({origin:"*"}));
-app.use(express.json());  // to support JSON-encoded+
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-);
+
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 require('./socket')(server)
 
