@@ -9,11 +9,11 @@ import data from '../../Data';
 const Contacts: React.FC <RouteComponentProps> = (props)=> {
     const [chats, setChats] = useState([]);
 
-    useEffect(() =>{
-        Users.getUser(1).then(res => {
-            setChats(res.data.users);
-        })
-    },[])
+    // useEffect(() =>{
+    //     Users.getUser(1).then(res => {
+    //         setChats(res.data.users);
+    //     })
+    // },[])
   
     function viewMessages(user:any){    
         props.history.push('/messages', {data: user})

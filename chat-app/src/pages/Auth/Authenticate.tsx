@@ -1,6 +1,17 @@
 import {IonButton, IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
-import "./auth.css"
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { getToken } from '../../helpers/helpers';
+import "./auth.css";
+
 const Auth: React.FC = () => {
+    const history = useHistory();
+    useEffect(() => {
+        const token = getToken();
+        if(token){
+            history.push('/app/chats');
+        }
+    },[])
   return (
     <IonPage>        
         <IonContent className='auth-form'>

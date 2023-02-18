@@ -1,11 +1,11 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonNote, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from "yup";
 import Auth from '../../service/auth';
-import { setToken } from '../../helpers/helpers';
+import { getToken, setToken } from '../../helpers/helpers';
 
 const SignIn: React.FC<RouteComponentProps> = (props) => {
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -28,7 +28,7 @@ const SignIn: React.FC<RouteComponentProps> = (props) => {
         Auth.login(userData).then((result) => {
             
             setToken(result.data.token);  
-            props.history.push('/chats');
+            props.history.push('/app/chats');
             reset();
         }).catch((error) => {
             console.log(error);
@@ -36,6 +36,13 @@ const SignIn: React.FC<RouteComponentProps> = (props) => {
         
         return false;
     }
+
+    useEffect(() => {
+        const token = getToken();
+        if(token){
+            props.history.push('/app/chats');
+        }
+    },[])
 
     return (
         <IonPage>
@@ -48,7 +55,7 @@ const SignIn: React.FC<RouteComponentProps> = (props) => {
             <IonContent className='siginForm'>
                 <IonCard>
                     <IonCardHeader>
-                        <IonCardTitle>Sign In</IonCardTitle>
+                        <IonCardTitle>LiveChat Box</IonCardTitle>
                     </IonCardHeader>
                     <form >
                         <IonCardContent>

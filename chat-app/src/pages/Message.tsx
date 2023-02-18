@@ -1,9 +1,8 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonPage, IonTextarea, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
 import { callOutline, videocamOutline, add, cameraOutline, sendOutline } from 'ionicons/icons';
-import { useEffect, useState } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
+import { useState } from 'react';
 import { decodedToken } from '../helpers/helpers';
-import SingleUser  from "../service/messages";
 import "./Messages.css";
 
 const Messages: React.FC <RouteComponentProps> = (props) => {

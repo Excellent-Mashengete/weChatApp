@@ -12,6 +12,7 @@
     "@capacitor/ios": "4.6.3",
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/preferences": "^4.0.2",
+    "@capacitor/splash-screen": "^4.1.4",
     "@capacitor/status-bar": "4.1.1",
     "@hookform/resolvers": "^2.9.11",
     "@ionic/pwa-elements": "^3.1.1",

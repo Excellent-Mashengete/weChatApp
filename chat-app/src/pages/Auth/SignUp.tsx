@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { RouteComponentProps } from 'react-router-dom';
 import Auth from '../../service/auth';
 import * as Yup from 'yup';
-import { setToken } from '../../helpers/helpers';
+import { getToken, setToken } from '../../helpers/helpers';
+import { useEffect } from 'react';
 
 const SignUp: React.FC<RouteComponentProps> = (props) => {
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -41,7 +42,7 @@ const SignUp: React.FC<RouteComponentProps> = (props) => {
         //Login user if successfuly signed up
         await Auth.login(logData).then((response) => {
             setToken(response.data.token);  
-            props.history.push('/chats');
+            props.history.push('/app/chats');
             reset();
         }).catch((error) => {
             console.log(error);    
@@ -49,12 +50,18 @@ const SignUp: React.FC<RouteComponentProps> = (props) => {
         
         return false;
     }
+    useEffect(() => {
+        const token = getToken();
+        if(token){
+            props.history.push('/app/chats');
+        }
+    },[])
    
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Sign Up</IonTitle>
+                    <IonTitle>LiveChat Box</IonTitle>
                 </IonToolbar>
             </IonHeader>
 

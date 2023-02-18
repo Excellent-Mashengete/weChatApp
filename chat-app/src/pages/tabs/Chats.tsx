@@ -12,25 +12,10 @@ import "./Chats.css";
 const Chats: React.FC<RouteComponentProps> = (props)=> {
   const [chats, setChats] = useState([]);
   
-  function AllUsersAndGroups(){
-    Users.getUser(decodedToken().id).then(res => {
-      console.log(res.data.allContact);
-      
-      setChats(res.data.allContact);
-    })
-  }
-  useEffect(() =>{
-    AllUsersAndGroups();
-  },[])
-
   function viewMessages(user:any){    
     props.history.push('/messages', {data: user})
   }
 
-  console.log(chats);
-
- 
-  
 
   return (
     <IonPage>
