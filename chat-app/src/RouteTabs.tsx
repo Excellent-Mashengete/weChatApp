@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs,} from '@ionic/react';
-import { chatbubblesOutline, cogOutline, callOutline } from 'ionicons/icons';
+import { chatbubblesOutline, cogOutline, callOutline, fileTrayFullOutline } from 'ionicons/icons';
 import Chats from './pages/tabs/Chats';
 import Settings from './pages/tabs/Settings';
 import Contacts from './pages/tabs/Contacts';
@@ -10,6 +10,7 @@ import Calls from './pages/tabs/Calls';
 const Tabs: React.FC = () => {
     return(
         <IonTabs>
+    
             <IonRouterOutlet>
                 <Route exact path="/app/calls" component={Calls} />
                 <Route exact path="/app/contacts" component={Contacts} />
@@ -26,7 +27,7 @@ const Tabs: React.FC = () => {
                 </IonTabButton>
 
                 <IonTabButton tab="tab2" href="/app/contacts">
-                    <IonIcon icon={chatbubblesOutline} />
+                    <IonIcon icon={fileTrayFullOutline} />
                 </IonTabButton>
 
                 <IonTabButton tab="tab3" href="/app/chats">

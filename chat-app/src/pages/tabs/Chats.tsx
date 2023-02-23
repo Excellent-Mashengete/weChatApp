@@ -1,4 +1,4 @@
-import { IonAvatar, IonBadge, IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAvatar, IonBadge, IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSearchbar, IonSkeletonText, IonTitle, IonToolbar } from '@ionic/react';
 import { RouteComponentProps } from 'react-router-dom';
 import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
 import { isPlatform } from '@ionic/react';
@@ -6,7 +6,7 @@ import { decodedToken, transform } from '../../helpers/helpers';
 import { useState, useEffect } from "react";
 import Skeleton from 'react-loading-skeleton';
 import Users from '../../service/users';
-import Data from '../../Data';
+import {data} from '../../Data';
 import "./Chats.css";
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
@@ -16,10 +16,9 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
     props.history.push('/messages', {data: user})
   }
 
-
   return (
     <IonPage>
-     <IonHeader>
+      <IonHeader>
         <IonToolbar>
           <IonTitle>Chats</IonTitle>
           <IonButtons className='text-2xl' slot='end'>
@@ -44,15 +43,33 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
         </IonHeader> 
 
         <IonList>
-          {Data.map((item:any) => { 
+          {/* skeleton loading */}
+          <IonItem className='height' detail={false}>
+            <IonAvatar  className='img' slot="start">
+              <IonSkeletonText ></IonSkeletonText>
+            </IonAvatar>
+
+            <IonLabel>
+              <IonSkeletonText animated={true} style={{ 'width': '80px' }}></IonSkeletonText>
+              <IonSkeletonText animated={true} style={{ 'width': '100px' }}></IonSkeletonText>
+            </IonLabel>
+
+            <div >
+              <IonSkeletonText animated={true} style={{ 'width': '80px' }}></IonSkeletonText>
+              <IonSkeletonText animated={true} style={{ 'width': '30px', 'float':'right' }}></IonSkeletonText>
+            </div>
+          </IonItem>
+
+          {/* Real Data */}
+          {data.map((item:any) => { 
             return (
               <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
                  <IonAvatar className='img' slot='start'>
-                  <img src={item.avatar || <Skeleton />} alt="Silhouette of a person's head" />
+                  <img src={item.avatar} alt="Silhouette of a person's head" />
                 </IonAvatar>
      
                 <IonLabel>
-                  <IonLabel> {item.name || <Skeleton  count={10} />} </IonLabel>
+                  <IonLabel> {item.name} </IonLabel>
                   {item.group_id >= 0 ? (
                       <p> {item.cellphone || item.username } {item.lastMessage} </p>
                     ):(
@@ -61,9 +78,9 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
                   }
                 </IonLabel>
 
-                <div>
+                <div >
                   <p>{transform (item.datesend)}</p>
-                  <IonBadge  slot="end">11</IonBadge>   
+                  <IonBadge className=' float-right'  slot="end">11</IonBadge>   
                 </div>
               </IonItem>
             )

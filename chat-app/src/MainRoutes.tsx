@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonRouterOutlet, IonSplitPane} from '@ionic/react';
+import { IonRouterOutlet, IonSplitPane, IonTabs} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Messages from './pages/Message';
 import Viewcontact from './pages/Viewcontact';

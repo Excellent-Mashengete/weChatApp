@@ -1,4 +1,4 @@
-const data = [
+export const data = [
     {
         "id":1,
         "name": "Excellent",
@@ -49,9 +49,66 @@ const data = [
         "datesend": "2022-06-16T14:24:21.685Z",
         "description":" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
- 
-  
 ]
 
-export default data;
+export const contacts = [
+    {
+        "id":1,
+        "name": "Excellent",
+        "cellphone":"+27632428878",
+        "avatar":"https://avatarfiles.alphacoders.com/226/226604.png",
+    },
+    {
+        
+        "id":2,
+        "name": "Koketso",
+        "cellphone":"+27632428878",
+        "avatar":"https://avatarfiles.alphacoders.com/975/97500.jpg",
+    },
+    {
+        "id":3,
+        "name": "Excellent",
+        "cellphone":"+27632428878",
+        "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg",
+    },
+    {
+        "id":4,
+        "name": "Keith",
+        "cellphone":"+27632428878",
+        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
+    }
+]
+
+export const notRegistered = [
+    {
+        "id":1,
+        "name": "Kat",
+        "cellphone":"+27632428878",
+        "avatar":"https://avatarfiles.alphacoders.com/103/103808.jpg",
+    },
+    {
+        "id":2,
+        "name": "Matshepo",
+        "cellphone":"+27632428878",
+        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
+    },
+    {
+        "id":3,
+        "name": "Abbie",
+        "cellphone":"+27632428878",
+        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
+    },
+    {
+        "id":4,
+        "name": "Thomas",
+        "cellphone":"+27632428878",
+        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
+    },
+    {
+        "id":5,
+        "name": "Koketso",
+        "cellphone":"+27632428878",
+        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
+    },
+]
 
