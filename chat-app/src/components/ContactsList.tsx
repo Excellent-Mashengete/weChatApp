@@ -34,6 +34,10 @@ const ContactList: React.FC = () => {
         }
     }
 
+    useEffect(() => {
+        retrieveListOfContacts();
+    },[])
+
     console.log(contList);
     
     
