@@ -1,63 +1,59 @@
-import { IonAvatar, IonContent, IonIcon, IonItem, IonLabel, IonList, IonRefresher, IonRefresherContent, IonSkeletonText, IonText, IonToolbar, RefresherEventDetail } from "@ionic/react";
+import { IonAvatar, IonContent, IonItem, IonLabel, IonList, IonSkeletonText, IonText} from "@ionic/react";
 import { personAdd } from "ionicons/icons";
 import { ContactPayload, Contacts } from '@capacitor-community/contacts';
 import { StatusBar } from '@capacitor/status-bar';
-import { data, contacts } from '../Data';
-import { useEffect, useState } from "react";
-const image =  'https://ionicframework.com/docs/img/demos/avatar.svg';
-const ContactList: React.FC = () => {
-    const numrows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4];
-    //const [contList, setContacts] =useState();
-    const contList: ContactPayload[][]= [];
-    function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
-        setTimeout(() => {
+import { ContactInterface } from "../interface/Contacts";
+import List from "./ListContacts";
+import { useHistory } from "react-router";
+import { useState } from "react";
 
-          // Any calls to load data go here
-          event.detail.complete();
-        }, 2000);
+
+interface ContainerProps {
+    contacts: ContactInterface[];
+}
+
+const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => { 
+    const history = useHistory();
+    const [groupList, setGroup] = useState<any[]>([]);
+    const [query, setQuery] = useState<any>("")
+    const currentLocation =  history.location.pathname;
+    
+    function addedMembers(member:any){  
+        setGroup((group:any) => {
+            console.log();
+            
+            // if ( !member.id) {
+                return (
+                    [...group, member]
+                )
+            // }else {
+            //     return 
+            // }   
+        })
     }
-
-    const retrieveListOfContacts = async () => {
-        let permission = await Contacts.requestPermissions();
-        if (!permission) {
-            return;
-        }else{
-            const projection = {
-                // Specify which fields should be retrieved.
-                name: true,
-                phones: true,
-                postalAddresses: true,
-            };
-
-            const result = await Contacts.getContacts({projection});
-
-            localStorage.setItem("contacts", JSON.stringify(result));
-            contList.push(result.contacts)
-            console.log(result);
-        }
-    }
-
-    useEffect(() => {
-        retrieveListOfContacts();
-    },[])
-
+    console.log(groupList);
     
     return (
         <IonContent>
-            <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
-                <IonRefresherContent></IonRefresherContent>
-            </IonRefresher>
-            
             <IonList>
-                <IonItem button lines="none" detail={false} >
-                    <IonIcon icon={personAdd} slot="start" color="primary"></IonIcon>
-                    <IonLabel>New contact</IonLabel>
+                <IonItem>
+                    {/* {currentLocation !== '/contacts' ? 
+                            groupList.map((group:any) => { 
+                                return (
+                                    <IonAvatar key={group.id} className='img' slot="start">
+                                        <img src={group.avatar} alt="Silhouette of a person's head" />  
+                                    </IonAvatar>
+                                )
+                            })
+                
+                        :
+                            <></>
+                    } */}
                 </IonItem>
-
                 {/* skeleton loading */}
                 <IonItem detail={false} lines="none">
-                    <IonAvatar className="avatar" slot="start">
-                        <IonSkeletonText ></IonSkeletonText>
+                    <IonAvatar  slot="start">
+                        <IonSkeletonText className="img"></IonSkeletonText>
                     </IonAvatar>
 
                     <IonLabel>
@@ -67,42 +63,28 @@ const ContactList: React.FC = () => {
                 </IonItem>
 
                 {/* Registered loading */}
-                {contacts.length > 0  &&
-                    <div className="mt-2">
+                {/* {currentLocation === '/contacts' ?
                     <IonText className="px-1 m-4 ">Contants on LiveChat Box</IonText>
-                    {contacts.map((item:any) => { 
-                        return (    
-                            <IonItem button detail={false} lines="none" className='height' key={item.id} >
-                                <IonAvatar className='img' slot="start" class="avatar">
-                                    <img src={item.avatar} alt="Silhouette of a person's head" />
-                                </IonAvatar>
-
-                                <IonLabel>
-                                    {item.name }
-                                    <p className="pt-1">{ item.cellphone }</p>
-                                </IonLabel>
-                            </IonItem>
-                        ); 
-                    })}
-                    </div> 
-                } 
-
-
-                 {/* Not Registered loading */}
-                 {contList.map((item:any) => { 
-                        return (    
-                            <IonItem button detail={false} lines="none" className='height' key={item.id} >
-                                <IonAvatar className='img' slot="start" class="avatar">
-                                    <img src={image} alt="Silhouette of a person's head" />
-                                </IonAvatar>
-
-                                <IonLabel>
-                                    {item.name}
-                                    <p className="pt-1">{ item.phones }</p>
-                                </IonLabel>
-                            </IonItem>
-                        ); 
-                    })}
+                    :
+                    <></>
+                    }    
+                */}
+                {currentLocation === '/contacts' ? 
+                        contacts.map((item:any) => { 
+                            return (
+                                <List key={item.id} name={item.name } avatar={item.avatar} phone={ item.phone }  />    
+                            );
+                        })
+                    
+                    :
+                        contacts.map((item:any) => { 
+                            return (
+                                <div key={item.id} onClick={() =>addedMembers(item)}>
+                                    <List  name={item.name } avatar={item.avatar} phone={ item.phone }  />    
+                                </div>
+                            );
+                        })
+                }
             </IonList>
         </IonContent>
 

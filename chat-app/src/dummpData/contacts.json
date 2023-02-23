@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "id":1,
+            "name": "Excellent",
+            "phone":"+27795535147",
+            "avatar":"https://avatarfiles.alphacoders.com/226/226604.png"
+        },
+        {        
+            "id":2,
+            "name": "Koketso",
+            "phone":"+27632428878",
+            "avatar":"https://avatarfiles.alphacoders.com/975/97500.jpg"
+        },
+        {
+            "id":3,
+            "name": "Shaggy",
+            "phone":"+27727607323",
+            "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg"
+        },
+        {
+            "id":4,
+            "name": "Ipeleng",
+            "phone":"+27835791397",
+            "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg"
+        },
+        {
+            "id":5,
+            "name": "Brandon",
+            "phone":"+27786274306",
+            "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg"
+        }
+    ]    
+}

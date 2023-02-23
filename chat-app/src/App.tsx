@@ -1,7 +1,6 @@
 import { IonApp, setupIonicReact } from '@ionic/react';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
-import 'react-loading-skeleton/dist/skeleton.css'
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -18,17 +17,15 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import MainRoutes from './MainRoutes';
-import { SkeletonTheme } from 'react-loading-skeleton';
 
+/*Defined styles */
+import "./styles.css";
 setupIonicReact();
 
 const App: React.FC = () => (
-  <SkeletonTheme baseColor="#202020" highlightColor="#444">
     <IonApp>
       <MainRoutes />
-    </IonApp>
-  </SkeletonTheme>
-  
+    </IonApp> 
 );
 
 export default App;

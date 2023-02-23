@@ -4,10 +4,8 @@ import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
 import { isPlatform } from '@ionic/react';
 import { decodedToken, transform } from '../../helpers/helpers';
 import { useState, useEffect } from "react";
-import Skeleton from 'react-loading-skeleton';
 import Users from '../../service/users';
 import {data} from '../../Data';
-import "./Chats.css";
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
   const [chats, setChats] = useState([]);
@@ -64,7 +62,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
           {data.map((item:any) => { 
             return (
               <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
-                 <IonAvatar className='img' slot='start'>
+                <IonAvatar className='img' slot='start'>
                   <img src={item.avatar} alt="Silhouette of a person's head" />
                 </IonAvatar>
      
@@ -87,7 +85,8 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
           })} 
           
         </IonList>
-        {isPlatform('android') ? (
+        {isPlatform('android') ? 
+          (
             <IonFab slot="fixed" vertical="bottom" horizontal="end">
               <IonFabButton routerLink='/contacts' color="secondary">
                 <IonIcon  icon={chatbubbleEllipses}></IonIcon>
