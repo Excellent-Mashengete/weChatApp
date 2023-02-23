@@ -1,14 +1,14 @@
 import { IonAvatar, IonContent, IonIcon, IonItem, IonLabel, IonList, IonRefresher, IonRefresherContent, IonSkeletonText, IonText, IonToolbar, RefresherEventDetail } from "@ionic/react";
 import { personAdd } from "ionicons/icons";
-import { Contacts } from '@capacitor-community/contacts';
+import { ContactPayload, Contacts } from '@capacitor-community/contacts';
 import { StatusBar } from '@capacitor/status-bar';
 import { data, contacts } from '../Data';
 import { useEffect, useState } from "react";
-
+const image =  'https://ionicframework.com/docs/img/demos/avatar.svg';
 const ContactList: React.FC = () => {
     const numrows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4];
-    const [contList, setContacts] = useState();
-
+    //const [contList, setContacts] =useState();
+    const contList: ContactPayload[][]= [];
     function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
         setTimeout(() => {
 
@@ -30,6 +30,9 @@ const ContactList: React.FC = () => {
             };
 
             const result = await Contacts.getContacts({projection});
+
+            localStorage.setItem("contacts", JSON.stringify(result));
+            contList.push(result.contacts)
             console.log(result);
         }
     }
@@ -38,8 +41,6 @@ const ContactList: React.FC = () => {
         retrieveListOfContacts();
     },[])
 
-    console.log(contList);
-    
     
     return (
         <IonContent>
@@ -88,6 +89,20 @@ const ContactList: React.FC = () => {
 
 
                  {/* Not Registered loading */}
+                 {contList.map((item:any) => { 
+                        return (    
+                            <IonItem button detail={false} lines="none" className='height' key={item.id} >
+                                <IonAvatar className='img' slot="start" class="avatar">
+                                    <img src={image} alt="Silhouette of a person's head" />
+                                </IonAvatar>
+
+                                <IonLabel>
+                                    {item.name}
+                                    <p className="pt-1">{ item.phones }</p>
+                                </IonLabel>
+                            </IonItem>
+                        ); 
+                    })}
             </IonList>
         </IonContent>
 
