@@ -2,7 +2,7 @@ import { IonAvatar, IonContent, IonIcon, IonItem, IonLabel, IonList, IonRefreshe
 import { personAdd } from "ionicons/icons";
 import { Contacts } from '@capacitor-community/contacts';
 import { StatusBar } from '@capacitor/status-bar';
-import { data } from '../Data';
+import { data, contacts } from '../Data';
 import { useEffect, useState } from "react";
 
 const ContactList: React.FC = () => {
@@ -61,12 +61,11 @@ const ContactList: React.FC = () => {
                     </IonLabel>
                 </IonItem>
 
-                {/* skeleton loading */}
-
-                {data.length > 0  &&
+                {/* Registered loading */}
+                {contacts.length > 0  &&
                     <div className="mt-2">
                     <IonText className="px-1 m-4 ">Contants on LiveChat Box</IonText>
-                    {data.map((item:any) => { 
+                    {contacts.map((item:any) => { 
                         return (    
                             <IonItem button detail={false} lines="none" className='height' key={item.id} >
                                 <IonAvatar className='img' slot="start" class="avatar">
@@ -74,15 +73,17 @@ const ContactList: React.FC = () => {
                                 </IonAvatar>
 
                                 <IonLabel>
-                                    {item.username }
-                                    <p>+27{ item.cellphone }</p>
+                                    {item.name }
+                                    <p className="pt-1">{ item.cellphone }</p>
                                 </IonLabel>
                             </IonItem>
                         ); 
                     })}
-                    </div>
-                    
+                    </div> 
                 } 
+
+
+                 {/* Not Registered loading */}
             </IonList>
         </IonContent>
 

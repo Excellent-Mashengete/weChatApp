@@ -55,7 +55,7 @@ export const contacts = [
     {
         "id":1,
         "name": "Excellent",
-        "cellphone":"+27632428878",
+        "cellphone":"+27795535147",
         "avatar":"https://avatarfiles.alphacoders.com/226/226604.png",
     },
     {
@@ -67,48 +67,8 @@ export const contacts = [
     },
     {
         "id":3,
-        "name": "Excellent",
-        "cellphone":"+27632428878",
+        "name": "Ipeleng",
+        "cellphone":"+27835791397",
         "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg",
-    },
-    {
-        "id":4,
-        "name": "Keith",
-        "cellphone":"+27632428878",
-        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
     }
 ]
-
-export const notRegistered = [
-    {
-        "id":1,
-        "name": "Kat",
-        "cellphone":"+27632428878",
-        "avatar":"https://avatarfiles.alphacoders.com/103/103808.jpg",
-    },
-    {
-        "id":2,
-        "name": "Matshepo",
-        "cellphone":"+27632428878",
-        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
-    },
-    {
-        "id":3,
-        "name": "Abbie",
-        "cellphone":"+27632428878",
-        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
-    },
-    {
-        "id":4,
-        "name": "Thomas",
-        "cellphone":"+27632428878",
-        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
-    },
-    {
-        "id":5,
-        "name": "Koketso",
-        "cellphone":"+27632428878",
-        "avatar":"https://res.cloudinary.com/dmsxwwfb5/image/upload/v1595866967/full-stack-devlopment-min.png",
-    },
-]
-
