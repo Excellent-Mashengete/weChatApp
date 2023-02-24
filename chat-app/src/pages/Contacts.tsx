@@ -14,10 +14,6 @@ const Contacts: React.FC = ()=> {
     }
     
     useEffect(() =>{
-        // Users.getUser(1).then(res => {
-        //     setChats(res.data.users);
-        // })
-
         allRegistredUsers();
     },[])
 

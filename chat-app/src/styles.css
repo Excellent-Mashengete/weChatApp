@@ -10,27 +10,13 @@
     height: -webkit-fill-available;
     width: 60px;
 }
+
 .height{
     padding: 0px 0px;
     margin: 15px 0px;
 }
 
-.selectTitle{
-    font-size: 0.8rem;
-}
-.subtitle{
-    font-size: 0.6rem;
-}
-.myContancts{
-    font-size: 0.8rem;
-    color: light;
-}
-
-.newheight .img{
-    height: 40px;
-    width: 40px;
-}
-.newheight{
-    padding: 0px 0px;
-    margin: 10px 0px;
+.newgroupAva{
+    height: 50px;
+    width: 50px;
 }

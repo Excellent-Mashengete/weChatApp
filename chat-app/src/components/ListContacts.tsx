@@ -5,7 +5,7 @@ const List: React.FC<ContactInterface> = ({name, avatar, phone}) => {
 
     return (
         <IonItem button detail={false} lines="none" className='height' >
-            <IonAvatar className='img' slot="start" class="avatar">
+            <IonAvatar className='img' slot="start">
                 <img src={avatar} alt="Silhouette of a person's head" />
             </IonAvatar>
 

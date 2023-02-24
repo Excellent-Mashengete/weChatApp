@@ -1,12 +1,12 @@
-import { IonAvatar, IonContent, IonItem, IonLabel, IonList, IonSkeletonText, IonText} from "@ionic/react";
-import { personAdd } from "ionicons/icons";
+import { IonAvatar, IonContent, IonFab, IonFabButton, IonIcon, IonItem, IonLabel, IonList, IonSkeletonText, IonText, isPlatform} from "@ionic/react";
+import { arrowForward } from "ionicons/icons";
 import { ContactPayload, Contacts } from '@capacitor-community/contacts';
 import { StatusBar } from '@capacitor/status-bar';
 import { ContactInterface } from "../interface/Contacts";
 import List from "./ListContacts";
 import { useHistory } from "react-router";
 import { useState } from "react";
-
+import Modal from "./newGroup";
 
 interface ContainerProps {
     contacts: ContactInterface[];
@@ -15,41 +15,51 @@ interface ContainerProps {
 const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => { 
     const history = useHistory();
     const [groupList, setGroup] = useState<any[]>([]);
-    const [query, setQuery] = useState<any>("")
+
+
     const currentLocation =  history.location.pathname;
     
-    function addedMembers(member:any){  
-        setGroup((group:any) => {
-            console.log();
-            
-            // if ( !member.id) {
-                return (
-                    [...group, member]
-                )
-            // }else {
-            //     return 
-            // }   
-        })
+    function addedMembers(member:any){ 
+        if (groupList.includes(member)) {
+            handleDelete(groupList.findIndex((seat) => seat.id === member.id));
+        }else{
+            setGroup((group:any) => [...group, member])
+            console.log(groupList);
+        }
     }
-    console.log(groupList);
+    
+    function handleDelete(data:any) {
+        const newElements = [...groupList];
+        newElements.splice(data, 1);
+        setGroup(newElements);
+    }
+
+
+    
     
     return (
         <IonContent>
+
             <IonList>
-                <IonItem>
-                    {/* {currentLocation !== '/contacts' ? 
-                            groupList.map((group:any) => { 
+                {currentLocation !== '/contacts' 
+                    ?  
+                        <IonList className="flex gap-6 ml-6 mr-6 overflow-x-auto" >
+                            {groupList.map((group:any) => { 
                                 return (
-                                    <IonAvatar key={group.id} className='img' slot="start">
-                                        <img src={group.avatar} alt="Silhouette of a person's head" />  
-                                    </IonAvatar>
+                                    <IonLabel key={group.id} className='height snap-mandatory snap-x'  >
+                                        <IonAvatar  className='img' slot="start">
+                                            <img src={group.avatar} alt="Silhouette of a person's head" />
+                                        </IonAvatar>
+                                        <IonLabel>{group.name}</IonLabel>
+                                    </IonLabel>
                                 )
-                            })
+                            })}
+                        </IonList>
                 
-                        :
-                            <></>
-                    } */}
-                </IonItem>
+                    :
+                        <></>
+                }
+              
                 {/* skeleton loading */}
                 <IonItem detail={false} lines="none">
                     <IonAvatar  slot="start">
@@ -63,12 +73,12 @@ const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => {
                 </IonItem>
 
                 {/* Registered loading */}
-                {/* {currentLocation === '/contacts' ?
+                {currentLocation === '/contacts' ?
                     <IonText className="px-1 m-4 ">Contants on LiveChat Box</IonText>
                     :
                     <></>
-                    }    
-                */}
+                }    
+               
                 {currentLocation === '/contacts' ? 
                         contacts.map((item:any) => { 
                             return (
@@ -85,7 +95,23 @@ const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => {
                             );
                         })
                 }
+
+               
             </IonList>
+            
+            {isPlatform('android') && currentLocation !== '/contacts' ? 
+                (
+                    <IonFab slot="fixed" vertical="bottom" horizontal="end">
+                        <IonFabButton id="open-modal" color="secondary">
+                            <IonIcon  icon={arrowForward}></IonIcon>
+                        </IonFabButton>
+                    </IonFab>
+                ) 
+                : null
+            }
+
+            <Modal list={groupList}></Modal>
+
         </IonContent>
 
     );

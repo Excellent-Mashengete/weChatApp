@@ -29,6 +29,18 @@
             "name": "Brandon",
             "phone":"+27786274306",
             "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg"
+        },
+        {
+            "id":6,
+            "name": "Brandon",
+            "phone":"+27786274306",
+            "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg"
+        },
+        {
+            "id":7,
+            "name": "Brandon",
+            "phone":"+27786274306",
+            "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg"
         }
     ]    
 }
