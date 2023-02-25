@@ -4,15 +4,23 @@ import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
 import { isPlatform } from '@ionic/react';
 import { decodedToken, transform } from '../../helpers/helpers';
 import { useState, useEffect } from "react";
-import Users from '../../service/users';
-import {data} from '../../Data';
+import chats from "../../dummpData/chats.json";
 
 const Chats: React.FC<RouteComponentProps> = (props)=> {
-  const [chats, setChats] = useState([]);
+  const [getchats, setChats] = useState<any[]>([]);
   
   function viewMessages(user:any){    
     props.history.push('/messages', {data: user})
   }
+
+  function allChats() {
+    console.log(chats.data);
+    setChats(chats.data)        
+  }
+
+  useEffect(() =>{
+    allChats();
+  },[])
 
   return (
     <IonPage>
@@ -21,7 +29,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
           <IonTitle>Chats</IonTitle>
           <IonButtons className='text-2xl' slot='end'>
             {isPlatform('ios') ? ( 
-                <IonButton className='text-3xl' slot='end'>
+                <IonButton routerLink='/contacts' className='text-3xl' slot='end'>
                   <IonIcon icon={createOutline} />
                 </IonButton> )
               :null
@@ -59,7 +67,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
           </IonItem>
 
           {/* Real Data */}
-          {data.map((item:any) => { 
+          {getchats.map((item:any) => { 
             return (
               <IonItem className='height' key={item.id} onClick={() => {viewMessages(item)}}>
                 <IonAvatar className='img' slot='start'>

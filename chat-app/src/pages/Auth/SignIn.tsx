@@ -4,8 +4,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from "yup";
-import Auth from '../../service/auth';
 import { getToken, setToken } from '../../helpers/helpers';
+import Auth from '../../service/auth';
 
 const SignIn: React.FC<RouteComponentProps> = (props) => {
     const PhoneValidation = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -13,6 +13,7 @@ const SignIn: React.FC<RouteComponentProps> = (props) => {
         phone: string().required().matches(PhoneValidation),
         password: string().required().min(5),
     });
+
     const formOptions = { resolver: yupResolver(validationSchema) }
     const {register, handleSubmit, reset, formState } = useForm(formOptions)
     const { errors } = formState;

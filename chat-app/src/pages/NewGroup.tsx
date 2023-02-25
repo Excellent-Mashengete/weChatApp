@@ -28,7 +28,7 @@ const NewGroup: React.FC = ()=> {
                     </IonButtons>
                     { seachData === false 
                         ?
-                            <>
+                               <>
                                 <IonLabel >
                                         <IonTitle>New group</IonTitle>
                                         <IonTitle className='text-sm'>Add participants</IonTitle>

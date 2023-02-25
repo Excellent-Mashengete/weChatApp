@@ -1,12 +1,12 @@
-import { IonAvatar, IonContent, IonFab, IonFabButton, IonIcon, IonItem, IonLabel, IonList, IonSkeletonText, IonText, isPlatform} from "@ionic/react";
+import { IonAvatar, IonContent, IonFab, IonFabButton, IonIcon, IonItem, IonLabel, IonList, IonSkeletonText, IonText, isPlatform, useIonToast} from "@ionic/react";
 import { arrowForward } from "ionicons/icons";
 import { ContactPayload, Contacts } from '@capacitor-community/contacts';
 import { StatusBar } from '@capacitor/status-bar';
 import { ContactInterface } from "../interface/Contacts";
-import List from "./ListContacts";
 import { useHistory } from "react-router";
 import { useState } from "react";
 import Modal from "./newGroup";
+import List from "./ListContacts";
 
 interface ContainerProps {
     contacts: ContactInterface[];
@@ -15,10 +15,10 @@ interface ContainerProps {
 const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => { 
     const history = useHistory();
     const [groupList, setGroup] = useState<any[]>([]);
-
-
+    const [present] = useIonToast();
     const currentLocation =  history.location.pathname;
     
+
     function addedMembers(member:any){ 
         if (groupList.includes(member)) {
             handleDelete(groupList.findIndex((seat) => seat.id === member.id));
@@ -34,12 +34,8 @@ const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => {
         setGroup(newElements);
     }
 
-
-    
-    
     return (
         <IonContent>
-
             <IonList>
                 {currentLocation !== '/contacts' 
                     ?  
@@ -47,7 +43,10 @@ const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => {
                             {groupList.map((group:any) => { 
                                 return (
                                     <IonLabel key={group.id} className='height snap-mandatory snap-x'  >
+                                       {/* <div className="btn btn-sm btn-circle absolute right-2 top-2">✕</div> */}
+                                       <IonLabel onClick={() => { handleDelete(groupList.findIndex((seat) => seat.id === group.id));  console.log(groupList);}} className="btn btn-xs btn-circle bottom-11 ml-9 absolute ">{'X'}</IonLabel>
                                         <IonAvatar  className='img' slot="start">
+                                        
                                             <img src={group.avatar} alt="Silhouette of a person's head" />
                                         </IonAvatar>
                                         <IonLabel>{group.name}</IonLabel>
@@ -55,7 +54,6 @@ const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => {
                                 )
                             })}
                         </IonList>
-                
                     :
                         <></>
                 }
@@ -94,20 +92,26 @@ const ContactList: React.FC<ContainerProps> = ({contacts}:ContainerProps ) => {
                                 </div>
                             );
                         })
-                }
-
-               
+                }               
             </IonList>
             
-            {isPlatform('android') && currentLocation !== '/contacts' ? 
-                (
+            {isPlatform('android') && currentLocation !== '/contacts'  
+                ? 
                     <IonFab slot="fixed" vertical="bottom" horizontal="end">
                         <IonFabButton id="open-modal" color="secondary">
-                            <IonIcon  icon={arrowForward}></IonIcon>
+                            <IonIcon icon={arrowForward}></IonIcon>
                         </IonFabButton>
                     </IonFab>
-                ) 
-                : null
+                :[
+                    isPlatform('ios') && currentLocation !== '/contacts' ?
+                        <IonFab key={1} slot="fixed" vertical="bottom" horizontal="end">
+                            <IonFabButton id="open-modal" color="secondary">
+                                <IonIcon icon={arrowForward}></IonIcon>
+                            </IonFabButton>
+                        </IonFab>
+                    :
+                        null
+                ]
             }
 
             <Modal list={groupList}></Modal>

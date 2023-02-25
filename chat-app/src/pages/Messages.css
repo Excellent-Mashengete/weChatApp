@@ -10,7 +10,10 @@
     margin-right: 10px;
     font-size: x-large;
 }
-
+.mess ion-content{
+    --padding-start: 15px;
+    --padding-end: 15px;
+}
 ion-textarea.custom-textarea {
     --padding-bottom: 0;
     --padding-start: 0;

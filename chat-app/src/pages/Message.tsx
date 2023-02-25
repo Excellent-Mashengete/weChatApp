@@ -1,23 +1,32 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonPage, IonTextarea, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
 import { callOutline, videocamOutline, add, cameraOutline, sendOutline } from 'ionicons/icons';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { decodedToken } from '../helpers/helpers';
 import "./Messages.css";
+import messages from "../dummpData/messages.json";
 
 const Messages: React.FC <RouteComponentProps> = (props) => {
   const [userData] = useState<any>(props.history.location.state);
-  const [message_Text, setMessageText] = useState();
+  const [message_Text, setMessageText] = useState<any[]>([]);
   const history = useHistory();
 
-  console.log(userData);
+  // console.log(userData);
 
   function Viewcontact() {
     props.history.push("/viewcontact");
   }
 
+  function allDms() {
+    console.log(messages.data);     
+  }
+
+  useEffect(() =>{
+    allDms();
+  },[])
+
   return (
-    <IonPage>
+    <IonPage className='mess'>
       <IonHeader>
         <IonToolbar> 
           <IonButtons slot="start">
@@ -37,7 +46,7 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className='ml-4' fullscreen > 
+      <IonContent  fullscreen > 
         <div className='mt-5'>
           <div className="chat chat-start" >
             <div className="chat-image avatar">
@@ -75,10 +84,10 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
                 </IonButton>
               </IonButtons>
               
-              <IonItem>
-                <IonTextarea value={message_Text} onIonChange={(event:any) => setMessageText(event.target.value)} className='custom-textarea' autoGrow={true} placeholder="Message"  />
+          {/* <IonItem>
+               <IonTextarea value={message_Text} onIonChange={(event:any) => setMessageText(event.target.value)} className='custom-textarea' autoGrow={true} placeholder="Message"  />
               </IonItem>
-
+          */}
               <IonButtons>
                 <IonButton >
                   <IonIcon color="primary" icon={cameraOutline} />
