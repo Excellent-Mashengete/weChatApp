@@ -1,11 +1,11 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonTitle, IonToolbar, isPlatform, RefresherEventDetail } from '@ionic/react';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, RefresherEventDetail } from '@ionic/react';
 import { personAdd, people } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ContactList from '../components/ContactsList';
 import contacts from "../dummpData/contacts.json";
 
-const Contacts: React.FC = ()=> {
+const Calls: React.FC = ()=> {
     const history = useHistory();
     const [getContactList, setContact] = useState<any[]>([]);
 
@@ -31,28 +31,16 @@ const Contacts: React.FC = ()=> {
                     <IonButtons slot="start">
                         <IonBackButton defaultHref='/app/chats'></IonBackButton>
                     </IonButtons>
-                    {isPlatform('ios') 
-                        ?
-                            <IonTitle  className='w-96'>New Chat</IonTitle>
-                        :
-                            <IonTitle  className='w-96'>Select contact</IonTitle> 
-                    }
+                        
+                    <IonTitle  className='w-96'>Select contact</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
             <IonContent scrollX={true} >
-                {isPlatform('ios') 
-                    ?
-                        <IonToolbar className='mt-5'>
-                            <IonSearchbar></IonSearchbar>
-                        </IonToolbar>
-                    :
-                        null
-                }
 
-                <IonItem button lines="none" detail={false} onClick={()=> history.push('/newgroup')} >
+                <IonItem button lines="none" detail={false} >
                     <IonIcon icon={people} slot="start" color="primary"></IonIcon>
-                    <IonLabel>New group</IonLabel>
+                    <IonLabel>New group call</IonLabel>
                 </IonItem>
 
                 <IonItem button lines="none" detail={false} >
@@ -65,10 +53,10 @@ const Contacts: React.FC = ()=> {
                 </IonRefresher>
 
                 <ContactList contacts={getContactList} />
-
+                
             </IonContent>
         </IonPage>
     );
 }
 
-export default Contacts;
+export default Calls;

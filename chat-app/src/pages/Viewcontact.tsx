@@ -1,12 +1,26 @@
 import { IonAvatar, IonBackButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { add } from 'ionicons/icons';
+import { add, callSharp, chatboxSharp, videocamSharp } from 'ionicons/icons';
 import { useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 import "./Messages.css";
 
 const Viewcontact: React.FC <RouteComponentProps> = (props) => {
   const [userData] = useState<any>(props.history.location.state);
-  
+  console.log(userData.userData.data);
+  const history = useHistory();
+ 
+  function videoCall() {
+    console.log("Make video callls");
+  }
+
+  function voiceCall() {
+    console.log("Make voice callls");   
+  }
+
+  function goBack() {
+    history.push('/messages')
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -19,20 +33,45 @@ const Viewcontact: React.FC <RouteComponentProps> = (props) => {
       </IonHeader>
 
       <IonContent>
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Card Title</IonCardTitle>
-            <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+        <div >
+          <img className='h-72 w-full' src={userData.userData.data.avatar} alt="" />
+        </div>
+
+        <IonCard className='shadow-none'>
+          <IonCardHeader className='text-center'>
+            <IonCardTitle>{userData.userData.data.name}</IonCardTitle>
+            <IonCardSubtitle>{userData.userData.data.phone}</IonCardSubtitle>
           </IonCardHeader>
 
-          <IonCardContent>
-            Here's a small text description for the card content. Nothing more, nothing less.
+          <IonCardContent >
+            <IonItem  detail={false} lines="none">
+              <IonLabel>
+                <IonButtons className='voiceCall justify-center' onClick={goBack}>
+                  <IonIcon color="primary" icon={chatboxSharp} />
+                </IonButtons>
+                <IonLabel className='mt-2 text-center'>Message</IonLabel>
+              </IonLabel>
+
+              <IonLabel>
+                <IonButtons className='voiceCall justify-center' onClick={voiceCall}>
+                  <IonIcon color="primary" icon={callSharp} />
+                </IonButtons>
+                <IonLabel className='mt-2 text-center'>Audio</IonLabel>
+              </IonLabel>
+
+              <IonLabel>
+                <IonButtons className='videoCall justify-center' onClick={videoCall} slot="end">
+                  <IonIcon color="primary" icon={videocamSharp} />
+                </IonButtons>
+                <IonLabel className='mt-2 text-center'>Video</IonLabel>
+              </IonLabel>
+            </IonItem>
           </IonCardContent>
         </IonCard>
 
         <IonCard>
           <IonCardContent>
-            <IonLabel>Here's a small text description for the card content. Nothing more, nothing less.</IonLabel>
+            <IonLabel> {userData.userData.data.description}</IonLabel>
             <p>22 October 2022</p>
           </IonCardContent>
         </IonCard>

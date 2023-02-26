@@ -1,13 +1,12 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonLabel, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
-import { search } from 'ionicons/icons';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import contacts from "../dummpData/contacts.json";
 import ContactList from '../components/ContactsList';
 
 const NewGroup: React.FC = ()=> {
-    const [seachData, setSearchData] = useState(false);
     const [getContactList, setContact] = useState<any[]>([]);
+    const history = useHistory();
 
     function allRegistredUsers() {
         setContact(contacts.data)        
@@ -17,31 +16,22 @@ const NewGroup: React.FC = ()=> {
         allRegistredUsers();
     },[])
 
-    const history = useHistory();
-
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar> 
-                    <IonButtons slot="start" onClick={() => setSearchData(false)}>
+                    <IonButtons slot="start">
                         <IonBackButton defaultHref='/app/chats'></IonBackButton>
                     </IonButtons>
-                    { seachData === false 
-                        ?
-                               <>
-                                <IonLabel >
-                                        <IonTitle>New group</IonTitle>
-                                        <IonTitle className='text-sm'>Add participants</IonTitle>
-                                </IonLabel>
-
-                                <IonButtons className='voiceCall' slot="end">
-                                    <IonIcon color="primary"  onClick={() => setSearchData(true)} icon={search} />
-                                </IonButtons>
-                            </>
+                    { isPlatform('android')?
+                            <IonLabel >
+                                <IonTitle>New group</IonTitle>
+                                <IonTitle className='text-sm'>Add participants</IonTitle>
+                            </IonLabel>
                         :
-                            <IonToolbar>
-                                <IonSearchbar></IonSearchbar>
-                            </IonToolbar>  
+                            <IonLabel >
+                                <IonTitle>New group</IonTitle>
+                            </IonLabel>
                     }
                 </IonToolbar>
             </IonHeader>

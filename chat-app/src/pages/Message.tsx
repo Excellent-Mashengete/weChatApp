@@ -11,14 +11,22 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
   const [message_Text, setMessageText] = useState<any[]>([]);
   const history = useHistory();
 
-  // console.log(userData);
-
+  console.log(userData);
+  
   function Viewcontact() {
-    props.history.push("/viewcontact");
+    props.history.push("/viewcontact", {userData});
   }
 
   function allDms() {
     console.log(messages.data);     
+  }
+
+  function videoCall() {
+    console.log("Make video callls");
+  }
+
+  function voiceCall() {
+    console.log("Make voice callls");   
   }
 
   useEffect(() =>{
@@ -35,11 +43,11 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
 
           <IonTitle  className='w-96'>{userData.data.name}</IonTitle>
 
-          <IonButtons className='videoCall' slot="end">
+          <IonButtons className='videoCall' onClick={videoCall} slot="end">
             <IonIcon color="primary" icon={videocamOutline} />
           </IonButtons>
 
-          <IonButtons className='voiceCall' slot="end">
+          <IonButtons className='voiceCall' onClick={voiceCall} slot="end">
             <IonIcon color="primary" icon={callOutline} />
           </IonButtons>
 

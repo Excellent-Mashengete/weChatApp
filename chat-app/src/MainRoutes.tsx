@@ -1,7 +1,7 @@
-import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonRouterOutlet, IonSplitPane, IonTabs} from '@ionic/react';
+import { IonRouterOutlet, IonSplitPane} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { getToken } from './helpers/helpers';
 import Messages from './pages/Message';
 import Viewcontact from './pages/Viewcontact';
 import SignUp from './pages/Auth/SignUp';
@@ -10,8 +10,8 @@ import Authenticate from './pages/Auth/Authenticate';
 import Contacts from './pages/Contacts';
 import NewGroup from './pages/NewGroup';
 import Tabs from './RouteTabs';
-import { getToken } from './helpers/helpers';
 
+import Calls from './pages/ContactCalls';
 
 const Routes: React.FC = () => {
     const token = getToken();
@@ -23,6 +23,7 @@ const Routes: React.FC = () => {
                         {token ? <Tabs /> : <Redirect to='/auth/signin' />}
                     </Route>
                     <Route exact path="/messages" component={Messages} />
+                    <Route exact path="/makecalls" component={Calls} />
                     <Route exact path="/contacts" component={Contacts} />
                     <Route exact path="/newgroup" component={NewGroup} />
                     <Route exact path="/viewcontact" component={Viewcontact} />

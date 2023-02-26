@@ -1,0 +1,25 @@
+{
+    "data": [
+        {
+            "id":2,
+            "name": "Koketso",
+            "avatar":"https://avatarfiles.alphacoders.com/975/97500.jpg",
+            "datesend": "2023-02-26T10:15:21.685Z",
+            "commType":"video"
+        },
+        {
+            "id":3,
+            "name": "Shaggy",
+            "avatar":"https://ionicframework.com/docs/img/demos/avatar.svg",
+            "datesend": "2023-02-16T10:24:21.685Z",
+            "commType":"video"
+        },
+        {
+            "id":5,
+            "name": "Brandon",
+            "avatar":"https://avatarfiles.alphacoders.com/103/103808.jpg",
+            "datesend": "2023-02-26T12:30:21.685Z",
+            "commType":"audio"
+        }
+    ]
+}

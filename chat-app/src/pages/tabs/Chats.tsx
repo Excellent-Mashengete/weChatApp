@@ -2,7 +2,7 @@ import { IonAvatar, IonBadge, IonButton, IonButtons, IonContent, IonFab, IonFabB
 import { RouteComponentProps } from 'react-router-dom';
 import { chatbubbleEllipses, createOutline } from 'ionicons/icons';
 import { isPlatform } from '@ionic/react';
-import { decodedToken, transform } from '../../helpers/helpers';
+import { transform } from '../../helpers/helpers';
 import { useState, useEffect } from "react";
 import chats from "../../dummpData/chats.json";
 
@@ -23,8 +23,8 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
   },[])
 
   return (
-    <IonPage>
-      <IonHeader>
+    <IonPage >
+      <IonHeader className='mr-2'>
         <IonToolbar>
           <IonTitle>Chats</IonTitle>
           <IonButtons className='text-2xl' slot='end'>
@@ -38,7 +38,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent fullscreen >
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Chats</IonTitle>
@@ -48,7 +48,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
           </IonToolbar>
         </IonHeader> 
 
-        <IonList>
+        <IonList className='mr-2'>
           {/* skeleton loading */}
           <IonItem className='height' detail={false}>
             <IonAvatar  className='img' slot="start">
@@ -77,7 +77,7 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
                 <IonLabel>
                   <IonLabel> {item.name} </IonLabel>
                   {item.group_id >= 0 ? (
-                      <p> {item.cellphone || item.username } {item.lastMessage} </p>
+                      <p> {item.phone || item.username } {item.lastMessage} </p>
                     ):(
                       <p>{item.lastMessage} </p>
                     )
@@ -90,9 +90,9 @@ const Chats: React.FC<RouteComponentProps> = (props)=> {
                 </div>
               </IonItem>
             )
-          })} 
-          
+          })}  
         </IonList>
+        
         {isPlatform('android') ? 
           (
             <IonFab slot="fixed" vertical="bottom" horizontal="end">

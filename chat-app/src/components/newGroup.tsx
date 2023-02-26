@@ -1,6 +1,5 @@
- import React, { useState, useRef, useEffect } from 'react';
-import { IonButtons, IonButton, IonHeader, IonContent, IonToolbar, IonTitle, IonItem, IonLabel, IonInput, IonModal, IonAvatar, isPlatform, IonFab, IonFabButton, IonIcon, IonBackButton, IonNote, useIonToast, IonToast, useIonActionSheet } from '@ionic/react';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { useState, useRef, useEffect } from 'react';
+import { IonButtons, IonButton, IonHeader, IonContent, IonToolbar, IonTitle, IonItem, IonLabel, IonInput, IonModal, IonAvatar, IonFab, IonFabButton, IonIcon, IonNote, useIonToast, IonToast} from '@ionic/react';
 import { useHistory } from 'react-router';
 import { arrowBack, checkmark } from 'ionicons/icons';
 import { useForm } from "react-hook-form";
@@ -13,58 +12,48 @@ interface ContainerProps {
 }
 
 function NewGroup({list}:ContainerProps) {
+    const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
     const modal = useRef<HTMLIonModalElement>(null);
     const page = useRef(null);
-  
-    const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
-    const [present] = useIonActionSheet();
-  
-    useEffect(() => {
-      setPresentingElement(page.current);
-    }, []);
-  
+    const history = useHistory();
+    const currentLocation =  history.location.pathname;
     const validationSchema = object().shape({
         name: string().required('provide group name and optional group icon')
     });
-
     const formOptions = { resolver: yupResolver(validationSchema) }
     const {register, handleSubmit, reset, formState } = useForm(formOptions)
     const { errors } = formState;
 
+    useEffect(() => {
+        setPresentingElement(page.current);
+    }, []);
 
-    const history = useHistory();
-    const currentLocation =  history.location.pathname;
-    const [showToast, setShowToast] = useState(false);
-    const [message, setMessage] = useState(
-      'This modal example uses triggers to automatically open a modal when the button is clicked.'
-    );
-  
-    function onWillDismiss(ev: CustomEvent<OverlayEventDetail>) {
-      if (ev.detail.role === 'confirm') {
-        setMessage(`Hello, ${ev.detail.data}!`);
-      }
-    }
-
+   
     function createGroup(data:any, event: any) {
         event.preventDefault();
         let group ={
             name: data.name,
-            description: "",
+            description: data.decription,
             avatar: image,
             creator_id: 1 
         }
 
         console.log(group);   
+        reset();
+        return
     }
      
     return (
-        <IonModal ref={modal} trigger="open-modal" onWillDismiss={(ev) => onWillDismiss(ev)} presentingElement={presentingElement!}>
+        <IonModal ref={modal} trigger="open-modal" presentingElement={presentingElement!}>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Modal</IonTitle>
-                    <IonButtons slot="end">
-                        <IonButton onClick={() => modal.current?.dismiss()}>Close</IonButton>
+                    <IonButtons slot="start">
+                        <IonButton onClick={() => modal.current?.dismiss()}>
+                            <IonIcon icon={arrowBack} />
+                        </IonButton>
                     </IonButtons>
+                    <IonTitle>New Group</IonTitle>
+                    
                 </IonToolbar>
             </IonHeader>
             
@@ -73,17 +62,18 @@ function NewGroup({list}:ContainerProps) {
                     <IonAvatar  className='img' slot='start'>
                         <img src={image} alt="Silhouette of a person's head" />
                     </IonAvatar>
+
                     <IonItem>
                         <IonInput type="text" {...register('name')} name="name"  placeholder="Type group discription here" />
-                        <IonNote color="danger" >{errors.name?.message?.toString()}</IonNote>
-                   </IonItem>
+                        <IonToast isOpen={errors.name?.message?.toString() !== undefined} message={errors.name?.message?.toString()} position={'top'} duration={3600} />
+                    </IonItem>
                 </IonItem>
 
-                <IonItem  className='mb-5'>
-                    <IonInput type="text" placeholder="Type group discription here" />
+                <IonItem className='mb-4'>
+                    <IonInput type="text" {...register('decription')} name="decription"  placeholder="You can provide an optional group discription here" />
                 </IonItem>
 
-                <IonLabel >Participants: {list.length}</IonLabel>
+                <IonLabel className='ml-4 ' >Participants: {list.length}</IonLabel>
             
                 {list.map((response:any) => 
                     <IonItem   key={response.id}  detail={false} lines="none" className='height' >
@@ -102,12 +92,11 @@ function NewGroup({list}:ContainerProps) {
                     ? 
                         <IonFab slot="fixed" vertical="bottom" horizontal="end">
                             <IonFabButton color="secondary">
-                                <IonIcon  onClick={(handleSubmit(createGroup))} icon={checkmark}></IonIcon>
+                                <IonIcon onClick={handleSubmit(createGroup)} icon={checkmark}></IonIcon>
                             </IonFabButton>
                         </IonFab> 
                     : null
                 }
-
             </IonContent>
         </IonModal>
     );
