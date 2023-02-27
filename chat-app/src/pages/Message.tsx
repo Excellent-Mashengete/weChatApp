@@ -1,5 +1,5 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonFabButton, IonFooter, IonHeader, IonIcon, IonItem, IonPage, IonSpinner, IonTextarea, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
-import { callOutline, videocamOutline, add, cameraOutline, sendOutline, send, attach } from 'ionicons/icons';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonFabButton, IonFooter, IonHeader, IonIcon, IonItem, IonPage, IonTextarea, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
+import { callOutline, videocamOutline, cameraOutline, send, attach } from 'ionicons/icons';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { decodedToken } from '../helpers/helpers';
@@ -281,57 +281,40 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
         </div>
       </IonContent>
 
-      <IonFooter className='border-none   bg-transparent'>
-        <div className='flex foot h-16'>
-          <IonToolbar className='rounded-2xl '>
-          <IonItem detail={false} lines="none" className=' max-h-40 overflow-y-auto'>
-              <IonButtons  >
-                <IonButton className='text-lg' >
-                  <IonIcon color="primary" icon={attach} />
-                </IonButton>
-              </IonButtons>
+      <IonFooter className='border-none  bg-transparent'>
+       
+          <div className='flex foot h-22 max-h-28'>
+            <IonToolbar className='rounded-2xl'>
+              <IonItem detail={false} lines="none" className='max-h-28 overflow-y-auto'>
+                <IonButtons  >
+                  <IonButton className='text-lg' >
+                    <IonIcon color="primary" icon={attach} />
+                  </IonButton>
+                </IonButtons>
               
-              <div className="">
-                <IonTextarea onIonChange={(event:any) => setMessageText(event.target.value)} className='custom-textarea ' autoGrow={true} placeholder="Message"  />
-              </div>
+                <div className="w-full ">
+                  <IonTextarea onIonChange={(event:any) => setMessageText(event.target.value)} autoGrow={true} placeholder="Message"  />
+                </div>
 
-              <IonButtons >
-                <IonButton >
-                  <IonIcon color="primary" icon={cameraOutline} />
-                </IonButton>
-              </IonButtons>
-            </IonItem>
-          </IonToolbar>
-          
-          <IonButtons className='ml-2' >
-            <IonFabButton type='submit' >
-              <IonIcon  icon={send} />
-            </IonFabButton>
-          </IonButtons>
-        </div>
-      </IonFooter>
+                <IonButtons>
+                  <IonButton slot='end' className='text-lg' >
+                    <IonIcon color="primary" icon={cameraOutline} />
+                  </IonButton>
+                </IonButtons>
+              </IonItem>
+            </IonToolbar>
+            
+            <IonButtons className='ml-2' >
+              <IonFabButton type='submit' >
+                <IonIcon  icon={send} />
+              </IonFabButton>
+            </IonButtons>
+          </div>
+        
+        </IonFooter>
 
     </IonPage>
   );
 }
 
 export default Messages;
-
-/* <IonItem detail={false} lines="none" className=' max-h-40 overflow-y-auto'>
-              <IonButtons  >
-                <IonButton className='text-lg' >
-                  <IonIcon color="primary" icon={attach} />
-                </IonButton>
-              </IonButtons>
-              
-              <div className="">
-                <IonTextarea onIonChange={(event:any) => setMessageText(event.target.value)} className='custom-textarea ' autoGrow={true} placeholder="Message"  />
-              </div>
-
-              <IonButtons >
-                <IonButton >
-                  <IonIcon color="primary" icon={cameraOutline} />
-                </IonButton>
-              </IonButtons>
-            </IonItem>
-            */

@@ -22,28 +22,32 @@
     color: white;
     background: var(--ion-color-primary)
 }
-ion-textarea.custom-textarea {
+.mess ion-textarea{
     --padding-bottom: 0;
     --padding-start: 0;
-    --border-radius: 5%;
+    --padding-end: 0;
 }
-ion-footer ioni-tem{
-   display: flex;
+.mess .ios ion-textarea{
+    --padding-bottom: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 24px;
 }
-ion-footer ion-icon{
+.mess ion-footer ion-icon{
     font-size: x-large;
 }
-ion-fab-button{
-    height: 50px;
-    width: 50px;
+.mess ion-fab-button{
+    height: 40px;
+    width: 40px;
 }
-ion-card ion-item ion-avatar{
+.mess ion-card ion-item ion-avatar{
     height: 50px;
     width: 50px;
 }
 .foot ion-toolbar {
     --background: var( --ion-toolbar-background)
 }
+
 .danger{
     color: red;
 }
@@ -52,7 +56,4 @@ ion-card ion-item ion-avatar{
 }
 .footer-md::before {
     background-image: none
-}
-.data{
-    height: 100vh;
 }

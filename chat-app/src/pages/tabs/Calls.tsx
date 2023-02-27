@@ -1,7 +1,7 @@
 import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { call} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import ExploreContainer from '../../components/ExploreContainer';
+import ExploreContainer from '../../components/UserSettings';
 import CallsData from '../../components/CallsData'
 import calls from "../../dummpData/calls.json";
 
@@ -34,7 +34,7 @@ const Calls: React.FC = () => {
         {callsHistory.length !== 0?
             <CallsData logs={callsHistory} />
           :
-            <ExploreContainer name="Settings page" />
+            <ExploreContainer  />
         }
 
         <IonFab slot="fixed" vertical="bottom" horizontal="end">

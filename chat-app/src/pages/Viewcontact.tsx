@@ -22,7 +22,7 @@ const Viewcontact: React.FC <RouteComponentProps> = (props) => {
   }
 
   return (
-    <IonPage>
+    <IonPage class='mess'>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">

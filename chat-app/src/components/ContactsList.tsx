@@ -5,7 +5,7 @@ import { StatusBar } from '@capacitor/status-bar';
 import { ContactInterface } from "../interface/Contacts";
 import { useHistory } from "react-router";
 import { useState } from "react";
-import Modal from "./newGroup";
+import Modal from './NewGroup'
 import List from "./ListContacts";
 
 interface ContainerProps {
