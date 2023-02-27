@@ -10,7 +10,7 @@ import Authenticate from './pages/Auth/Authenticate';
 import Contacts from './pages/Contacts';
 import NewGroup from './pages/NewGroup';
 import Tabs from './RouteTabs';
-
+import EditBio from './pages/EditBio';
 import Calls from './pages/ContactCalls';
 
 const Routes: React.FC = () => {
@@ -25,6 +25,7 @@ const Routes: React.FC = () => {
                     <Route exact path="/messages" component={Messages} />
                     <Route exact path="/makecalls" component={Calls} />
                     <Route exact path="/contacts" component={Contacts} />
+                    <Route exact path="/editBio" component={EditBio} />
                     <Route exact path="/newgroup" component={NewGroup} />
                     <Route exact path="/viewcontact" component={Viewcontact} />
                     <Route exact path="/auth" component={Authenticate} />

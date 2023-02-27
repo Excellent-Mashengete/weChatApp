@@ -34,7 +34,7 @@ const Calls: React.FC = () => {
         {callsHistory.length !== 0?
             <CallsData logs={callsHistory} />
           :
-            <ExploreContainer  />
+            null
         }
 
         <IonFab slot="fixed" vertical="bottom" horizontal="end">
