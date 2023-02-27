@@ -13,21 +13,26 @@
 .mess ion-content{
     --padding-start: 15px;
     --padding-end: 15px;
+    --background: var(--ion-color-light)
+}
+.mess .foot{
+    background: var(--ion-color-light)
+}
+.chat-sender{
+    color: white;
+    background: var(--ion-color-primary)
 }
 ion-textarea.custom-textarea {
     --padding-bottom: 0;
     --padding-start: 0;
     --border-radius: 5%;
 }
-
 ion-footer ioni-tem{
    display: flex;
 }
-
 ion-footer ion-icon{
-    font-size: xx-large;
+    font-size: x-large;
 }
-
 ion-fab-button{
     height: 50px;
     width: 50px;
@@ -36,14 +41,18 @@ ion-card ion-item ion-avatar{
     height: 50px;
     width: 50px;
 }
+.foot ion-toolbar {
+    --background: var( --ion-toolbar-background)
+}
 .danger{
     color: red;
 }
-
 .groups{
     padding-left: 14px;
 }
-
-.chat-bubble-light{
-    background-color: rgb(138, 138, 138);
+.footer-md::before {
+    background-image: none
+}
+.data{
+    height: 100vh;
 }

@@ -1,7 +1,6 @@
 import { IonContent, IonGrid, IonIcon, IonPage} from '@ionic/react';
 import { videocamOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router';
-import "./home.css"
 
 const Home: React.FC = () => {
     const history = useHistory();

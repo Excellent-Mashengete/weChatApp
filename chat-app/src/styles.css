@@ -1,4 +1,4 @@
-.ios IonAvatar{
+.ios ion-avatar{
     text-transform: uppercase;
 }
 .height .img{
@@ -19,4 +19,8 @@
 .newgroupAva{
     height: 50px;
     width: 50px;
+}
+
+.tab{
+    height: 4rem;
 }

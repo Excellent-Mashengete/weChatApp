@@ -19,16 +19,16 @@ const Tabs: React.FC = () => {
                 </Route>
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom">
-                <IonTabButton tab="tab1" href="/app/calls">
+            <IonTabBar slot="bottom" className="tab">
+                <IonTabButton tab="calls" href="/app/calls">
                     <IonIcon icon={callOutline} />
                 </IonTabButton>
 
-                <IonTabButton tab="tab3" href="/app/chats">
+                <IonTabButton tab="chats" href="/app/chats">
                     <IonIcon icon={chatbubblesOutline} />
                 </IonTabButton>
 
-                <IonTabButton tab="tab3`" href="/app/settings">
+                <IonTabButton tab="settings`" href="/app/settings">
                     <IonIcon icon={cogOutline} />
                 </IonTabButton>
             </IonTabBar>
