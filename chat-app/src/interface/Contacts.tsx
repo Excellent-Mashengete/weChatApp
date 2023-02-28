@@ -1,5 +1,9 @@
-export interface ContactInterface {
-    name: string;
-    avatar: string;
-    phone: string;
+export interface Chats {
+    name:string 
+    avatar:string 
+    group_id:any
+    phone:string
+    username:string
+    lastMessage:string
+    datesend:any
 }

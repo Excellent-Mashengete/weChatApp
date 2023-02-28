@@ -16,15 +16,15 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import MainRoutes from './MainRoutes';
+import Routes from './Routes';
 
 /*Defined styles */
-import "./styles.css";
+
 setupIonicReact();
 
 const App: React.FC = () => (
     <IonApp>
-      <MainRoutes />
+      <Routes />
     </IonApp> 
 );
 
