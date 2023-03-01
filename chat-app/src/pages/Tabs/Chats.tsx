@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonList, IonPage
 import { createOutline } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import Contacts from '../../components/ContactChats';
-import chats from "../../DummpData/chats.json";
+import chats from "../../dummpData/chats.json";
 
 const Chats: React.FC = () => {
     const [getchats, setChats] = useState<any[]>([]);

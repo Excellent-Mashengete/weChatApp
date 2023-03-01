@@ -1,4 +1,4 @@
-import { IonCard,IonCardTitle, IonContent, IonFab, IonFabButton, IonIcon, IonInput, IonItem, IonLabel, IonNote, IonPage, IonSelect } from '@ionic/react';
+import { IonCard, IonContent, IonFab, IonFabButton, IonIcon, IonPage } from '@ionic/react';
 import { arrowForward } from 'ionicons/icons';
 import { RouteComponentProps } from 'react-router-dom';
 import { useForm } from "react-hook-form";

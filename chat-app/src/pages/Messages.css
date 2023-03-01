@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.video{
+    font-size: x-large;
+    margin-right: 30px;
+}
+
+.voice{
+    font-size: x-large;
+    margin-right: 20px;
+}

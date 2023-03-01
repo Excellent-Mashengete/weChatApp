@@ -2,7 +2,7 @@ import { IonCard, IonCardSubtitle, IonCardTitle, IonContent, IonFab, IonFabButto
 import { arrowForward } from 'ionicons/icons';
 import { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { data } from '../../Data/CountryCode';
+import { data } from '../../data/CountryCode';
 import SendOtp from '../../components/auth/SendOtp';
 import Auth from '../../service/auth';
 import PhoneValidation from '../../components/auth/PhoneValidation';
