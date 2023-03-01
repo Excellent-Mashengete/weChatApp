@@ -1,0 +1,17 @@
+.home  {
+    text-align: center;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-60%);
+}
+
+.siginForm ion-card {
+    text-align: center;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 50%;
+    transform: translateY(-40%);
+}

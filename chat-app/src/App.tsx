@@ -19,7 +19,7 @@ import './theme/variables.css';
 import Routes from './Routes';
 
 /*Defined styles */
-
+import "./styles.css";
 setupIonicReact();
 
 const App: React.FC = () => (

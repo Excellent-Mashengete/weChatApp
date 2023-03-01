@@ -2,7 +2,9 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonRouterOutlet, IonSplitPane} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Tabs from './pages/Tabs/Tabs';
-
+import Home from './pages/Home'
+import Messages from './pages/Messages';
+import SignUp from './pages/Auth/SignUp';
 
 const Routes: React.FC = () => {
     return(
@@ -10,8 +12,10 @@ const Routes: React.FC = () => {
             <IonSplitPane contentId='main'>
                 <IonRouterOutlet id='main'>
                     <Route path="/app" component={Tabs} />
-
-        
+                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/messages" component={Messages} />
+                    <Route exact path="/auth/signup" component={SignUp} />
+                    <Route exact path="/"><Redirect to="/home" /></Route>
                 </IonRouterOutlet>
             </IonSplitPane>
         </IonReactRouter>
