@@ -12,7 +12,7 @@ app.use(bodyparser.json());
 
 require('./socket')(server)
 
-const db = require('./App/Models');
+const db = require('./App/models');
 
 db.sequelize.authenticate({force: false })
     .then(() => {
@@ -21,18 +21,13 @@ db.sequelize.authenticate({force: false })
         console.log("Failed to connect to DB: ", err);
     })
 
-
 app.get("/", (req, res) =>{
     res.status(200).send("Welcome to Chat app server");
 });
 
-const user = require("./App/Routes/getallusers.routes");
-const auth = require("./App/Routes/authenticate");
-const message = require("./App/Routes/getmessages");
+const auth = require("./App/routes/authenticate");
 
-app.use("/api", user);
 app.use("/api", auth);
-app.use("/api", message);
 
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}. http://localhost:${port}`) 

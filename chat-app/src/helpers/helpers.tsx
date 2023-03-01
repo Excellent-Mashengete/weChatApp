@@ -1,3 +1,21 @@
+import { AUTH_TOKEN } from "../environment/environment";
+import jwt from 'jwt-decode';
+export const getToken = () => {
+    return localStorage.getItem(AUTH_TOKEN);
+};
+
+export const setToken = (token:any) => {
+  if (token) {    
+    localStorage.setItem(AUTH_TOKEN, token);
+  }
+};
+
+export const decodedToken = () => {
+  const token:any = getToken();
+  const decoded:any = jwt(token);
+  return decoded;
+}
+
 export const transform = (date: string) => {
     if (!date) {return 'long time ago'}
       

@@ -5,6 +5,7 @@ import Tabs from './pages/Tabs/Tabs';
 import Home from './pages/Home'
 import Messages from './pages/Messages';
 import SignUp from './pages/Auth/SignUp';
+import SignIn from './pages/Auth/SignIn';
 
 const Routes: React.FC = () => {
     return(
@@ -15,6 +16,7 @@ const Routes: React.FC = () => {
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/messages" component={Messages} />
                     <Route exact path="/auth/signup" component={SignUp} />
+                    <Route exact path="/auth/signin" component={SignIn} />
                     <Route exact path="/"><Redirect to="/home" /></Route>
                 </IonRouterOutlet>
             </IonSplitPane>

@@ -1,4 +1,4 @@
-const dbConfig = require("../Config/db.config");
+const dbConfig = require("../config/db.config");
 
 const {Sequelize} = require("sequelize");
 
@@ -23,7 +23,6 @@ db.Messages.belongsTo(db.Users, {foreignKey: 'user_id'});
 //Receiver
 db.Users.hasMany(db.Messages, {foreignKey: 'recipient_id', as: 'receipient'});
 db.Messages.belongsTo(db.Users, {foreignKey: 'recipient_id', as: 'receipient'});
-
 
 //GroupMembers
 db.Users.hasMany(db.GroupMembers, {foreignKey: 'user_id'});

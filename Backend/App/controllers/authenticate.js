@@ -1,8 +1,25 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const db = require("../Models");
+const db = require("../models");
 const users = db.Users;
 const SECRET_KEY = "uihou";
+
+module.exports.verify = async (req, res) => {
+    const {cellphone } = req.body
+    
+    try {
+        const user = await users.findOne({ where: { cellphone: cellphone} })
+        
+        if (!user) {
+            return res.status(400).json({ message: "user doesn't exist", user: cellphone });
+        } 
+        
+        return res.status(200).json({message: "user found", user: cellphone });
+    }
+    catch(e) {
+        res.status(500).json({message: "Database error while registring user!" });
+    }
+}
 
 module.exports.register = async (req, res) => {
     const {name, avatar, cellphone, password } = req.body
@@ -27,10 +44,8 @@ module.exports.register = async (req, res) => {
     }
 }
 
-
 module.exports.login = async (req, res) => {
     const {cellphone, password } = req.body
-    console.log(cellphone, password);
 
     try {
         const user = await users.findOne({where:{ cellphone: cellphone }});

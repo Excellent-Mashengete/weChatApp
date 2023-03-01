@@ -1,9 +1,11 @@
-import { IonCard, IonCardSubtitle, IonCardTitle, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/react';
+import { IonCard, IonCardSubtitle, IonCardTitle, IonContent, IonFab, IonFabButton, IonIcon, IonItem, IonPage, IonSelect, IonSelectOption } from '@ionic/react';
 import { arrowForward } from 'ionicons/icons';
 import { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { data } from '../../Data/CountryCode';
-import SendOtp from '../../components/SendOtp';
+import SendOtp from '../../components/auth/SendOtp';
+import Auth from '../../service/auth';
+import PhoneValidation from '../../components/auth/PhoneValidation';
 
 const SignUp: React.FC<RouteComponentProps>= (props) => {
     const [country, setCountry] = useState({name: '', value: '', code: ''});
@@ -12,17 +14,22 @@ const SignUp: React.FC<RouteComponentProps>= (props) => {
     const handleChangeLoanTerm = (e:any, ) => {        
         setCountry(e.detail.value);
     }
+
+    async function verifyAccount(event:any){
+        event.preventDefault();  
+        let userData = {cellphone: country.code+phone}
+        
+        await Auth.verifyUser(userData).then((response) => {        
+            props.history.push('/auth/signin', {phone:response.data});
+        }).catch((err) => {
+            props.history.push('/auth/signin', {phone:err.response.data});
+        })
+    }
     
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>LiveChat Box</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-
             <IonContent className='text-center'>
-                <IonCard className='shadow-none'>
+                <IonCard className='shadow-none mt-16'>
                     <IonCardTitle className='text-lg mb-3 font-semibold'>Your phone number</IonCardTitle>
                     <IonCardSubtitle>Please confirm your country code <br/>and enter your phone number</IonCardSubtitle>
                         
@@ -34,25 +41,17 @@ const SignUp: React.FC<RouteComponentProps>= (props) => {
                         </IonSelect>
                     </IonItem>
 
-                    <IonItem lines='none'>
-                        <IonItem className='w-28'>
-                            <IonLabel position="floating">Code</IonLabel>
-                            <IonInput  value={country.code}></IonInput>
-                        </IonItem>
-                                
-                        <IonItem className='w-full'>
-                            <IonLabel position="floating">Phone Number</IonLabel>
-                            <IonInput type="tel" value={phone} onIonChange={(e:any) => setPhone(e.detail.value)} ></IonInput>
-                        </IonItem>
-                    </IonItem>
+                    <PhoneValidation code={country.code} phone={phone} setPhone={setPhone}  />
                 </IonCard>
 
                 <IonFab slot="fixed" vertical="bottom" horizontal="end">
-                    <IonFabButton id="open-modal" color="secondary">
-                        <IonIcon icon={arrowForward}></IonIcon>
-                    </IonFabButton>
+                    <label htmlFor="my-modal-4">
+                        <IonFabButton  color="secondary">
+                            <IonIcon icon={arrowForward}></IonIcon>
+                        </IonFabButton>
+                    </label>
                 </IonFab>
-                <SendOtp list={phone} />
+                <SendOtp list={country.code+phone} verify={verifyAccount} />
             </IonContent>
         </IonPage>
     );
