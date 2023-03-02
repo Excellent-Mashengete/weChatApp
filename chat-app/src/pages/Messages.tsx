@@ -10,11 +10,11 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
 
     function videoCall() {
         console.log("Make video callls");
-      }
+    }
     
-      function voiceCall() {
+    function voiceCall() {
         console.log("Make voice callls");   
-      }
+    }
 
     return (
         <IonPage className='mess'>

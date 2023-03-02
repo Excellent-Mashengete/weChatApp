@@ -26,8 +26,12 @@ app.get("/", (req, res) =>{
 });
 
 const auth = require("./App/routes/authenticate");
+const mess = require("./App/routes/messages");
+const chats = require("./App/routes/getuserchats");
 
 app.use("/api", auth);
+app.use("/api", mess);
+app.use("/api", chats);
 
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}. http://localhost:${port}`) 

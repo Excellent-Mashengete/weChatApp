@@ -1,6 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const GroupMembers = sequelize.define("groupMembers", {
-    
+  const GroupMembers = sequelize.define("groupMembers", {  
     joined_date: {
       type: Sequelize.DATE
     },
