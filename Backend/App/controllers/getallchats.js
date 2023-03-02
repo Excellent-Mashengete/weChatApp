@@ -3,12 +3,12 @@ const user = db.Users;
 const messages = db.Messages;
 const conversations = db.Conversations;
 const groupmembers = db.GroupMembers;
-const Sequelize = db.Sequelize;
+const {Sequelize} = db.sequelize
 
 module.exports.getallchats = async (req, res) => {
     const { id } = req.params
 
-    try{
+   try{
         //get all user you are chatting to
         const contacts = await messages.findAll({
             where: { 
@@ -19,7 +19,7 @@ module.exports.getallchats = async (req, res) => {
                 group_id: {[Sequelize.Op.is]: null}
             },
             include: [{ model: user}],
-            order:[['createdAt', 'DESC']],
+            order:['createdAt', 'DESC'],
         });
 
         //get all groups a user is added to 
