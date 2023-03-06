@@ -19,14 +19,6 @@ const Chats: React.FC = () => {
             <IonHeader className='mr-2'>
                 <IonToolbar>
                     <IonTitle>Chats</IonTitle>
-                    <IonButtons className='text-2xl' slot='end'>
-                        {isPlatform('ios') ? ( 
-                            <IonButton routerLink='/contacts' className='text-3xl' slot='end'>
-                            <IonIcon icon={createOutline} />
-                            </IonButton> )
-                        :null
-                        }
-                    </IonButtons>
                 </IonToolbar>
             </IonHeader>
 

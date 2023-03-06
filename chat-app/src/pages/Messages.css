@@ -4,10 +4,14 @@
 
 .video{
     font-size: x-large;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .voice{
     font-size: x-large;
-    margin-right: 20px;
+    margin-right: 10px;
+}
+
+.ellipsis{
+    font-size: x-large;
 }

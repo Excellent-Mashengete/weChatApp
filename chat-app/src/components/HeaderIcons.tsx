@@ -5,14 +5,16 @@ interface VideoContainer{
     videoCall:any;
     color:any;
     icon:any;
+    classty: string;
 }
 
-const VideoCall: React.FC<VideoContainer> = ({slot, videoCall, color, icon}) => {
+const HeaderIcons: React.FC<VideoContainer> = ({slot, videoCall, color, icon, classty}) => {
     return (
-        <IonButtons className="video"  onClick={videoCall} slot={slot}>
+        <IonButtons className={classty} onClick={videoCall} slot={slot}>
             <IonIcon color={color} icon={icon} />
+     
         </IonButtons> 
     );
 };
   
-export default VideoCall;
+export default HeaderIcons;

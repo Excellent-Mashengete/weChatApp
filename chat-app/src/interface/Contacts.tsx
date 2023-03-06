@@ -1,4 +1,5 @@
 export interface Chats {
+    id:any,
     name:string 
     avatar:string 
     group_id:any

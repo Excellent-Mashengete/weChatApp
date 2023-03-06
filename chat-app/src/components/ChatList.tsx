@@ -1,10 +1,15 @@
 import { IonAvatar, IonBadge, IonItem, IonLabel } from "@ionic/react";
+import { useHistory } from "react-router";
 import { Chats } from "../interface/Contacts";
 
-const ChatList: React.FC<Chats> = ({name, avatar, group_id, phone, username, lastMessage, datesend}) => {
-
+const ChatList = ({id, name, avatar, group_id, phone, username, lastMessage, datesend}:Chats) => {
+    const history = useHistory();
+    const messages = () => {
+        history.push('/messages', {state: id})  
+    }
+   
     return (
-        <IonItem className='height'>
+        <IonItem className='height' button onClick={messages}  >
             <IonAvatar className='img' slot='start'>
                 <img src={avatar} alt="Silhouette of a person's head" />
             </IonAvatar>

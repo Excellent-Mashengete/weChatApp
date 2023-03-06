@@ -6,12 +6,11 @@ interface ChatContainer{
 }
 
 const Contacts: React.FC<ChatContainer> = ({chats}) => {
-    
     return (
         <>
             {chats.map((item:any) => { 
                 return (
-                    <ChatList key={item.id} name={item.name} avatar={item.avatar} group_id={item.group_id} phone={item.phone} username={item.username} lastMessage={item.lastMessage} datesend={item.datesend} />
+                    <ChatList key={item.id} id={item} name={item.name} avatar={item.avatar} group_id={item.group_id} phone={item.phone} username={item.username} lastMessage={item.lastMessage} datesend={item.datesend} />
                 )
             })}  
         </>
