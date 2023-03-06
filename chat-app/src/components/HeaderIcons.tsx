@@ -6,13 +6,13 @@ interface VideoContainer{
     color:any;
     icon:any;
     classty: string;
+    id:any;
 }
 
-const HeaderIcons: React.FC<VideoContainer> = ({slot, videoCall, color, icon, classty}) => {
+const HeaderIcons: React.FC<VideoContainer> = ({slot, id, videoCall, color, icon, classty}) => {
     return (
-        <IonButtons className={classty} onClick={videoCall} slot={slot}>
+        <IonButtons id={id} className={classty} onClick={videoCall} slot={slot}>
             <IonIcon color={color} icon={icon} />
-     
         </IonButtons> 
     );
 };
