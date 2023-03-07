@@ -19,3 +19,11 @@
 .danger{
     color: var(--ion-color-danger);
 }
+.video{
+    font-size: x-large;
+    margin-right: 20px;
+}
+.voice{
+    font-size: x-large;
+    margin-right: 10px;
+}

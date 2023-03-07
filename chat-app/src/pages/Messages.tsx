@@ -2,15 +2,18 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import { callOutline, ellipsisVerticalOutline, videocamOutline } from 'ionicons/icons';
 import { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { pop } from '../data/PopOverMenu';
 import Back from '../components/backButton';
 import HeaderIcons from '../components/HeaderIcons';
 import Popover from '../components/PopOverList';
-import "./Messages.css";
-import { pop } from '../data/PopOverMenu';
 import TypingArea from '../components/TypingArea';
+import ChatMessages from '../components/ChatsMessages';
+import "./Messages.css";
+import { decodedToken } from '../helpers/helpers';
 
 const Messages: React.FC <RouteComponentProps> = (props) => {
     const [user] = useState<any>(props.history.location.state);
+    console.log(user.state.avatar);
     
     function videoCall() {
         console.log("Make video callls");
@@ -36,8 +39,8 @@ const Messages: React.FC <RouteComponentProps> = (props) => {
                 <Popover user={user} list={pop} />
             </IonHeader >
             
-            <IonContent fullscreen > 
-             
+            <IonContent fullscreen   style={{"--background": "var(--ion-color-light)"}} > 
+            <ChatMessages avatar={user.state.avatar}  loggedAvatar={decodedToken().avatar}/>
             </IonContent>
             <TypingArea />
         </IonPage>

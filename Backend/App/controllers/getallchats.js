@@ -8,7 +8,7 @@ const {Sequelize} = db.sequelize
 module.exports.getallchats = async (req, res) => {
     const { id } = req.params
 
-   try{
+    try{
         //get all user you are chatting to
         const contacts = await messages.findAll({
             where: { 
@@ -19,7 +19,9 @@ module.exports.getallchats = async (req, res) => {
                 group_id: {[Sequelize.Op.is]: null}
             },
             include: [{ model: user}],
-            order:['createdAt', 'DESC'],
+            order:[
+                ['createdAt', 'DESC']
+            ],
         });
 
         //get all groups a user is added to 
@@ -51,7 +53,8 @@ module.exports.getallchats = async (req, res) => {
                 name: contact.dataValues.user.name,
                 cellphone: contact.dataValues.user.cellphone,
                 avatar: contact.dataValues.user.avatar,
-                user_status: contact.dataValues.user.user_status
+                read: contact.dataValues.read,
+                createdesc: contact.dataValues.user.updatedAt,
             }
             allContacts.push(userdata);
         })
@@ -68,12 +71,13 @@ module.exports.getallchats = async (req, res) => {
                 avatar: group.dataValues.conversation.avatar,
                 group_id: group.dataValues.group_id,
                 creator: group.dataValues.conversation.creator_id,
+                createdesc: group.dataValues.conversation.updatedAt,
             }
 
             allContacts.push(contactGroup);
         })
 
-        return res.status(200).json({ allContact: allContacts});
+        return res.status(200).json({ allContact: groups});
     } catch(e) {
         return res.status(500).json({ error: "Database error while retrieving group messages" });
     }

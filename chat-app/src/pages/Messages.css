@@ -2,16 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-.video{
-    font-size: x-large;
-    margin-right: 20px;
-}
-
-.voice{
-    font-size: x-large;
-    margin-right: 10px;
-}
-
 .ellipsis{
     font-size: x-large;
+}
+.mess ion-content{
+    --padding-start: 15px;
+    --padding-end: 15px;
+}
+
+.mess .foot{
+    background: var(--ion-color-light)
+}
+
+.chat-sender{
+    color: white;
+    background: var(--ion-color-primary)
+}
+
+.mess ion-textarea{
+    --padding-bottom: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+}
+.mess .ios ion-textarea{
+    --padding-bottom: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 24px;
+}
+.mess ion-footer ion-icon{
+    font-size: x-large;
+}
+.mess ion-fab-button{
+    height: 40px;
+    width: 40px;
+}
+.mess ion-card ion-item ion-avatar{
+    height: 50px;
+    width: 50px;
+}
+.foot ion-toolbar {
+    --background: var( --ion-toolbar-background)
+}
+
+.danger{
+    color: red;
+}
+.groups{
+    padding-left: 14px;
+}
+.footer-md::before {
+    background-image: none
 }

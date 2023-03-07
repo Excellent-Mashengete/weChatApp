@@ -16,10 +16,6 @@ module.exports = (sequelize, Sequelize) => {
     description:{
       type: Sequelize.TEXT
     },
-    user_status:{
-      type : Sequelize.STRING,
-      defaultValue: "Offline"
-    },
     password: {
       type: Sequelize.STRING,
     },  

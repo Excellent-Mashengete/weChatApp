@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
                     <Route path="/app" component={Tabs} />
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/messages" component={Messages} />
-                    <Route exact path="/customeWall" component={Customewall} />
+                    <Route exact path="/customewall" component={Customewall} />
                     <Route exact path="/viewcontact" component={Viewcontact} />
                     <Route exact path="/auth/signup" component={SignUp} />
                     <Route exact path="/auth/signin" component={SignIn} />
